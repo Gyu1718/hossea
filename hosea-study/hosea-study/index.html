@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>호세아서 연구 노트 — 일곱 주석 종합</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Serif+Hebrew:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2a211c;          /* 밭흙 잉크 */
+  --ink-soft:#5b4f45;
+  --paper:#f4efe3;        /* 귀리 양피지 */
+  --panel:#fdfbf6;
+  --wine:#7b3040;         /* 석류주 — 언약·혼인의 축 */
+  --wine-deep:#57212e;
+  --gold:#9c7c3c;         /* 곡식·기름의 청동금 — 히브리어 표제 전용 */
+  --vine:#4d6b46;         /* 포도넝쿨 녹색 — 소망·소생 */
+  --line:#ddd5c3;
+  --k:#8a5a2b; --g:#2f6b5e; --hb:#a34a5c; --d:#2f5688; --kd:#5c5750; --s:#b06a1e; --m:#6a4c86;
+  --serif:"Noto Serif KR","Apple SD Gothic Neo",serif;
+  --sans:"Noto Sans KR","Apple SD Gothic Neo",sans-serif;
+  --heb:"Noto Serif Hebrew","SBL Hebrew",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--serif);color:var(--ink);background:var(--paper);line-height:1.85;font-size:16.5px;word-break:keep-all}
+
+/* ── 레이아웃: 좌측 목차 + 본문 ── */
+.frame{display:grid;grid-template-columns:274px 1fr;min-height:100vh}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--wine-deep);color:#f0e5df;padding:2.2rem 1.4rem 3rem;font-family:var(--sans);font-size:.82rem}
+nav.toc .brand{font-family:var(--serif);font-weight:900;font-size:1.05rem;line-height:1.45;color:#fff;margin-bottom:.3rem}
+nav.toc .brand-heb{font-family:var(--heb);font-size:1.5rem;color:var(--gold);direction:rtl;margin-bottom:.2rem}
+nav.toc .brand-sub{color:#c9a9a3;font-size:.72rem;letter-spacing:.13em;margin-bottom:1.5rem}
+nav.toc a{display:block;color:#ddc7c0;text-decoration:none;padding:.26rem .5rem;border-left:2px solid transparent;line-height:1.5}
+nav.toc a:hover,nav.toc a:focus-visible{color:#fff;border-left-color:var(--gold);background:rgba(255,255,255,.05);outline:none}
+nav.toc .lv1{font-weight:700;color:#f0e5df;margin-top:.85rem}
+nav.toc .lv2{padding-left:1.05rem;font-size:.78rem}
+main{max-width:47.5rem;padding:3.2rem 3rem 6rem;margin:0 auto;width:100%}
+@media(max-width:960px){
+  .frame{display:block}
+  nav.toc{position:static;height:auto;padding:1.4rem 1.2rem}
+  nav.toc .cols{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+  main{padding:2rem 1.15rem 4rem}
+}
+
+/* ── 표제부 ── */
+header.hero{border-bottom:3px double var(--line);padding-bottom:2.2rem;margin-bottom:2.6rem}
+.hero .heb-title{font-family:var(--heb);font-size:3.5rem;color:var(--gold);line-height:1.1;direction:rtl}
+.hero h1{font-size:2.05rem;font-weight:900;line-height:1.35;margin:.4rem 0 .6rem}
+.hero .sub{color:var(--ink-soft);font-size:.95rem}
+.hero .meta{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft);margin-top:1.1rem;letter-spacing:.02em}
+
+/* ── 섹션 공통 ── */
+section.part{margin-top:4.2rem}
+.part-head{border-top:3px solid var(--wine);padding-top:1.3rem;margin-bottom:1.7rem}
+.part-head .heb{font-family:var(--heb);font-size:2.4rem;color:var(--gold);line-height:1;direction:rtl;float:right;margin-left:1rem}
+.part-head .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;color:var(--wine);font-weight:700}
+.part-head h2{font-size:1.55rem;font-weight:900;line-height:1.4;margin:.25rem 0 .2rem}
+.part-head .gloss{font-size:.85rem;color:var(--ink-soft)}
+h3{font-size:1.14rem;font-weight:700;margin:2.1rem 0 .8rem;color:var(--wine-deep)}
+h4{font-size:.98rem;font-weight:700;margin:1.5rem 0 .5rem}
+p{margin:.85rem 0}
+strong{font-weight:700}
+em{font-style:normal;font-weight:500;color:var(--wine-deep)}
+
+/* 파종 고랑 구분선 — 이스르엘(하나님이 씨 뿌리신다) 모티프 */
+hr.furrow{border:0;height:10px;margin:2.6rem 0;background:
+ repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 22px) 0 4px/100% 2px no-repeat;
+ position:relative}
+hr.furrow::after{content:"";position:absolute;left:0;right:0;top:1px;height:2px;
+ background:repeating-linear-gradient(90deg,transparent 0 15px,var(--gold) 15px 17px,transparent 17px 30px)}
+
+/* 히브리어 인라인 */
+.hw{font-family:var(--heb);font-size:1.06em;direction:rtl;unicode-bidi:isolate}
+
+/* 주석가 칩 */
+.c{display:inline-block;font-family:var(--sans);font-weight:700;font-size:.6rem;line-height:1;padding:.24em .42em;border-radius:3px;color:#fff;vertical-align:.16em;letter-spacing:.02em}
+.c.k{background:var(--k)}.c.g{background:var(--g)}.c.hb{background:var(--hb)}.c.d{background:var(--d)}.c.kd{background:var(--kd)}.c.s{background:var(--s)}.c.m{background:var(--m)}
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1rem;font-family:var(--sans);font-size:.78rem;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.1rem;margin:1.2rem 0}
+.legend span.name{color:var(--ink-soft)}
+.legend>div{flex:1 1 44%;min-width:15rem}
+
+/* 카드·박스 */
+.note{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--vine);border-radius:6px;padding:1rem 1.2rem;margin:1.2rem 0;font-size:.95rem}
+.note .tt{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.14em;color:var(--vine);margin-bottom:.3rem}
+.caveat{background:#f7ecee;border:1px solid #e2c3c9;border-left:4px solid var(--wine);border-radius:6px;padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.92rem}
+.caveat .tt{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.14em;color:var(--wine);margin-bottom:.25rem}
+.gold-box{background:#faf4e6;border:1px solid #e6d5ac;border-left:4px solid var(--gold);border-radius:6px;padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.93rem}
+.gold-box .tt{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.14em;color:#8a6a2c;margin-bottom:.25rem}
+
+/* 절 단위 주해 */
+.vs{margin:1.35rem 0;padding-left:1.1rem;border-left:3px solid var(--line)}
+.vs .ref{font-family:var(--sans);font-weight:700;font-size:.86rem;color:var(--wine);display:block;margin-bottom:.25rem}
+.vs p{margin:.5rem 0;font-size:.97rem}
+
+/* 표 */
+table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1.3rem 0;background:var(--panel)}
+th{font-family:var(--sans);font-size:.74rem;letter-spacing:.05em;text-align:left;background:var(--wine-deep);color:#f0e5df;padding:.55rem .7rem;font-weight:700}
+td{border:1px solid var(--line);padding:.55rem .7rem;vertical-align:top;line-height:1.65}
+tr:nth-child(even) td{background:#faf6ee}
+td.head{font-weight:700;white-space:nowrap;background:#f0ece1!important}
+
+/* 장 블록 */
+.chap{margin:2.6rem 0;padding:1.5rem 1.6rem;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.chap>h3{margin-top:0;display:flex;align-items:baseline;gap:.6rem}
+.chap .chip-num{font-family:var(--sans);font-weight:700;font-size:.7rem;background:var(--wine);color:#fff;border-radius:4px;padding:.25em .55em;letter-spacing:.06em}
+.chap .lead{font-size:.93rem;color:var(--ink-soft);margin-top:-.2rem}
+
+ul,ol{padding-left:1.4rem;margin:.7rem 0}
+li{margin:.4rem 0}
+.back{font-family:var(--sans);font-size:.72rem;margin-top:1.6rem}
+.back a{color:var(--wine);text-decoration:none}
+footer{margin-top:5rem;border-top:3px double var(--line);padding-top:1.4rem;font-family:var(--sans);font-size:.75rem;color:var(--ink-soft)}
+
+@media print{
+  nav.toc{display:none}
+  .frame{display:block}
+  body{background:#fff;font-size:11pt}
+  main{max-width:100%;padding:0}
+  .chap,.note,.caveat,.gold-box{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="frame">
+
+<nav class="toc" aria-label="목차">
+  <div class="brand-heb">הוֹשֵׁעַ</div>
+  <div class="brand">호세아서 연구 노트</div>
+  <div class="brand-sub">SEVEN-COMMENTARY SYNTHESIS</div>
+  <div class="cols">
+    <a class="lv1" href="#overview">개요·주석 프로필</a>
+    <a class="lv1" href="#part1">Ⅰ. 배경 연구</a>
+    <a class="lv2" href="#p1-person">인물·출신</a>
+    <a class="lv2" href="#p1-history">역사 배경·사료</a>
+    <a class="lv2" href="#p1-marriage">호세아의 결혼(핵심 쟁점)</a>
+    <a class="lv2" href="#p1-cult">제의·바알·지식</a>
+    <a class="lv1" href="#part2">Ⅱ. 각 장 주해</a>
+    <a class="lv2" href="#ch1">1–3장 · 결혼 서사</a>
+    <a class="lv2" href="#ch4">4–7장 · 소송과 타락</a>
+    <a class="lv2" href="#ch8">8–10장 · 파종과 심판</a>
+    <a class="lv2" href="#ch11">11–14장 · 사랑·부활·귀향</a>
+    <a class="lv1" href="#part-preacher">Ⅲ. 설교자를 위한 메시지</a>
+    <a class="lv1" href="#part3">Ⅳ. 신학적 메시지</a>
+    <a class="lv1" href="#part4">Ⅴ. 상호 참조</a>
+    <a class="lv1" href="#part5">Ⅵ. 복음적 해석</a>
+    <a class="lv1" href="#part6">Ⅶ. 쟁점 대조표</a>
+    <a class="lv1" href="#part7">Ⅷ. 연구 서지</a>
+  </div>
+</nav>
+
+<main>
+
+<header class="hero" id="top">
+  <div class="heb-title">דְּבַר־יְהוָה אֶל־הוֹשֵׁעַ</div>
+  <h1>호세아서 연구 노트</h1>
+  <div class="sub">데바르-아도나이 엘-호셰아, "여호와의 말씀이 호세아에게 임하니라" (호 1:1) — 일곱 주석 종합: 주해 · 신학 · 상호 참조 · 복음적 해석</div>
+  <div class="meta">개인 연구용 종합 노트 · 히브리어는 (발음, 의미) 병기 · 문장 단위 출처는 주석가 칩으로 표시 · 성경 인용은 개역개정 대조 확인 전제</div>
+</header>
+
+
+<!-- ══════════════ 개요 ══════════════ -->
+<section class="part" id="overview">
+  <div class="part-head">
+    <div class="eyebrow">OVERVIEW</div>
+    <h2>개요와 일곱 주석 프로필</h2>
+    <div class="gloss">이 노트의 자료 기반과 각 주석의 해석 축</div>
+  </div>
+
+  <p>이 노트는 호세아서를 일곱 종의 주석으로 종합한 연구 문서다. 호세아는 주전 8세기 북왕국 이스라엘(에브라임)에서, 곧 사마리아가 앗수르에 함락되는 722/721년으로 치닫던 수십 년 동안 활동한 예언자다. 모든 해석 진술에는 출처 칩을 붙였고, 주석들이 갈리는 지점은 Ⅵ부의 대조표에 모았다. 절 표기는 개역개정을 기준으로 하되, 필요한 곳에서는 마소라 본문(MT)의 절 번호를 병기했다.</p>
+
+  <div class="legend">
+    <div><span class="c k">K</span> <span class="name">Kidner, BST (1981) — 경건·문학·수사, 간결한 복음적 강해</span></div>
+    <div><span class="c g">G</span> <span class="name">Goldingay, Baker (2021) — 히브리어 정밀·번역, "에브라임"과 "the Master"(바알)</span></div>
+    <div><span class="c hb">Hb</span> <span class="name">Hubbard, TOTC (1989) — 복음적·목회적, 양식·주제 종합</span></div>
+    <div><span class="c d">D</span> <span class="name">Dearman, NICOT (2010) — 고대근동·주해 종합, 가정(household) 근원은유</span></div>
+    <div><span class="c kd">KD</span> <span class="name">Keil-Delitzsch (19c) — 고전 문법·정통, 환상설·이인설(二人說)</span></div>
+    <div><span class="c s">S</span> <span class="name">Stuart, WBC (1987) — 언약 저주·축복 틀, 오경 의존 논제</span></div>
+    <div><span class="c m">M</span> <span class="name">Moon, Apollos (2018) — 신학·수용사, 단일저작 옹호, 기독교 교의</span></div>
+  </div>
+
+  <div class="note">
+    <div class="tt">책의 구획 — 일곱 주석의 합의와 변주</div>
+    <p>큰 이분은 <strong>1–3장(호세아의 경험·결혼)</strong>과 <strong>4–14장(호세아의 메시지)</strong>이며 여기에는 이견이 거의 없다. <span class="c hb">Hb</span>는 삼분한다: 1:2–3:5 / 4:1–11:11 / 11:12–14:8, 그리고 세 부분이 <strong>각각 고발(리브)로 시작해 소망으로 끝난다</strong>는 것을 구조 원리로 본다. <span class="c kd">KD</span>는 4–14장을 다시 세 단락(4:1–6:3 / 6:4–11:11 / 12–14장)으로 나누고 <strong>세 번 반복되는 회복의 약속</strong>(6:1–3; 11:9–11; 14:2–9)을 단락의 종결 표지로 삼는다. <span class="c m">M</span>은 1–3장을 여는 틀로, 14장을 닫는 에필로그로 보되 그 사이는 "경계가 흐릿하다"고 하여 <strong>엄격한 구조 분석에 무게를 덜 둔다</strong>. <span class="c s">S</span>는 책 전체가 "약 2/3가 언약 파기의 입증 → 임박한 저주 → 궁극적 회복 축복"이라는 단일 리듬으로 짜였다고 본다.</p>
+  </div>
+
+  <div class="note">
+    <div class="tt">단일저작과 편집 — 유다 편집자 문제</div>
+    <p>구원(회복) 단락을 후대 삽입으로 돌리던 시도는 대체로 폐기되었고 <span class="c hb">Hb</span>, 초점은 이제 소수의 유다 관련 구절(1:7; 5:5; 6:11; 8:14 등)이 "유다 편집자"의 손인가로 좁혀졌다. <span class="c m">M</span>은 이 편집설을 <strong>정면으로 반박</strong>한다. 국경은 유동적이었고(사마리아–예루살렘은 이틀 거리), 정치적으로 남북이 얽혀 있었으며, 오컴의 면도날을 들어 외적 증거 없이 본문을 잘라내지 말라고 한다. <span class="c d">D</span>와 <span class="c hb">Hb</span>는 절충한다. 호세아 자신이 유다를 시야에 넣었다고 보되, 책의 <strong>최종 형태는 사마리아 함락 후 히스기야기 유다에서</strong>(북에서 내려온 난민·제자들에 의해) 편집되었을 개연성을 인정한다. 표제(1:1)의 히스기야 언급이 그 편집적 갱신의 명백한 예다 <span class="c d">D</span> <span class="c hb">Hb</span>.</p>
+  </div>
+
+  <div class="gold-box">
+    <div class="tt">본문의 난해성 — 히브리 성경 최고 난도</div>
+    <p>호세아는 <strong>구약에서 본문상 가장 난해한 책</strong>으로 꼽힌다. <span class="c hb">Hb</span>: RSV가 표시한 난제·불확실·수정 제안이 요엘과 아모스를 합친 것의 거의 세 배다. <span class="c s">S</span>: 욥기를 제외하면 오탈자 비율이 가장 높으며, 북방(이스라엘) 방언과 철자 관행, 그리고 유다 필사자에게 낯설었을 원본이 원인일 수 있다. <span class="c m">M</span>은 최근 학계(Gelston의 BHQ, Barthélemy의 CTAT)가 MT를 이전보다 훨씬 견고한 기반 위에 놓았다고 보아 <strong>MT를 거의 그대로 따르고</strong> 수정을 최소화한다. <span class="c hb">Hb</span>도 같은 원칙이다. 난제는 "본문의 부패"보다 "우리 지식의 한계"에서 온다는 것. 호세아에는 하팍스(구약 유일어)가 서른 개 이상 있다 <span class="c m">M</span>.</p>
+  </div>
+</section>
+
+<hr class="furrow">
+
+<!-- ══════════════ Ⅰ부 · 배경 연구 ══════════════ -->
+<section class="part" id="part1">
+  <div class="part-head">
+    <div class="heb">אֶפְרַיִם</div>
+    <div class="eyebrow">PART Ⅰ</div>
+    <h2>배경 연구</h2>
+    <div class="gloss">인물과 출신 · 역사 배경과 사료 · 호세아의 결혼(핵심 쟁점) · 제의와 바알과 지식</div>
+  </div>
+
+  <h3 id="p1-person">1. 호세아의 출신과 인물</h3>
+
+  <p><strong>이름.</strong> <span class="hw">הוֹשֵׁעַ</span>(호셰아, "구원·구출", 추상명사를 구상으로 보면 "구원자") <span class="c kd">KD</span>. 칠십인역은 Ὡσηέ, 불가타는 Osee. <span class="c m">M</span>은 이름과 책의 대주제를 잇는다. 정치·군사·제의 어디서도 다른 데로 돌아서는 이스라엘에게, 오직 <span class="hw">יְהוָה</span>만이 구원(호셰아)이라는 것이 책의 요지다(14:3의 신앙고백).</p>
+
+  <p><strong>부친 브에리와 출신.</strong> 브에리(1:1) 이름 하나 외에는 개인 정보가 없다 <span class="c d">D</span> <span class="c hb">Hb</span>. <span class="c kd">KD</span>는 예언들의 내용·지리적 밀착성(5:1; 6:8–9; 12:12; 14:6), 아람어 색채를 띤 방언, 이스라엘을 "그 땅"(1:2)이라 부르고 이스라엘 왕을 "우리 왕"(7:5)이라 부르는 어법을 근거로 <strong>호세아가 북왕국의 신민(臣民)</strong>이었다고 확정한다. 유다 왕들을 표제에 앞세운 것은 출신 때문이 아니라, 참예언자들이 다윗 왕조만을 하나님의 백성의 합법적 통치자로 인정한 <strong>내적 태도</strong> 때문이다 <span class="c kd">KD</span>.</p>
+
+  <p><strong>평신도인가, 제사장·레위 출신인가.</strong> 호세아 자신의 신분에 대해 명시적 소명 기사가 없다 <span class="c d">D</span>. <span class="c hb">Hb</span>는 그가 제의(cult)의 이론·실천·타락을 <strong>속속들이 아는 사람</strong>임을 근거로, Wolff의 "레위 집단설"과 "언약 중재자설"을 소개하되 초기 이스라엘 제사장직에 대한 사료 부족이라는 "만만찮은 암초"에 부딪힌다고 판정한다. 결론은 절제적이다. 그가 언약 전승에 정통했고 스스로를 모세·사무엘의 계보를 잇는 <strong>예언자</strong>로 이해했다는 것(12:10, 13)까지가 확실하다 <span class="c hb">Hb</span>. <span class="c d">D</span>는 그를 시인이자 문필가로 본다. 예언자를 "화자이지 저자가 아니다"라던 전제가 호세아에게서 재검토되고 있다.</p>
+
+  <div class="note">
+    <div class="tt">호세아와 아모스 — 같은 시대, 다른 초점</div>
+    <p><span class="c hb">Hb</span>: 두 사람은 시기가 겹치나 강조가 판이하다. 아모스가 규탄한 죄(권력 남용, 가난한 자 착취, 언약 특권의 오만)가 호세아에도 잠깐씩 나오지만, 아모스가 거의 다루지 않은 <strong>바알 숭배</strong>가 호세아의 눈물의 주제다. 예언자는 신문 기자가 아니라 <strong>메신저</strong>였다 — 자기 소명·경험·받은 말씀에 의해 빚어져 특정 사안을 특정 방식으로 말하도록 보냄받은 자. 호세아의 결혼이라는 비극과 회복이 그의 이해를 <strong>이스라엘–언약의 주(主) 관계라는 한 점으로 좁혔다</strong>. 그 격정(pathos)이 책의 불이다.</p>
+  </div>
+
+  <h3 id="p1-history">2. 역사 배경과 외부 사료</h3>
+
+  <p>호세아의 시대는 북왕국의 짧은 생애에서 가장 격동적인 수십 년이었다. 배경의 큰 축은 <strong>여로보암 2세의 번영 → 무정부적 왕위 쟁탈 → 앗수르의 재부상 → 시리아-에브라임 전쟁 → 사마리아 함락</strong>이다.</p>
+
+  <p><strong>번영과 그 이면.</strong> 호세아의 소년기는 여로보암 2세(약 793–753)의 전성기였다. 고고학은 상대적 번영을 보여 주지만, <span class="c m">M</span>은 그 번영이 권력욕을 낳아 호세아의 성년기 내내 정치적 혼란으로 이어졌다고 본다. 여로보암 2세 사후 아들 스가랴는 6개월, 그를 죽인 살룸은 1개월 만에 므나헴에게 살해된다(왕하 15장). "그들이 왕을 세웠으나 내게서 난 것이 아니요"(8:4)의 배경이다 <span class="c d">D</span>.</p>
+
+  <p><strong>디글랏-빌레셀 3세와 앗수르의 부상.</strong> <span class="c m">M</span>: 이 시대 고대 근동의 가장 결정적 사건은 <strong>745년 디글랏-빌레셀 3세의 즉위</strong>다. 상비군(常備軍)의 성립으로 파종·수확에 매이지 않는 원정, 곧 애굽 국경까지의 진군과 비수기 전역이 가능해졌고, 앗수르의 위협은 상시적인 것이 되었다. 므나헴은 왕권 유지를 위해 그에게 조공을 바친다(왕하 15:19–20).</p>
+
+  <div class="caveat">
+    <div class="tt">사료 — 호세아의 대적자들이 앗수르 문헌에 나타난다</div>
+    <p><strong>므나헴의 조공.</strong> <span class="c d">D</span>는 앗수르 사료의 다중 증언을 정리한다. 737년 메디아 원정 기념 석비의 조공 목록과 왕실 연대기(738?)에 므나헴이 등재된다. 왕하 15:19–20은 "불"(=디글랏-빌레셀 3세)이 은 천 달란트를 받았다고 기록한다. <strong>페카의 20년 문제.</strong> 왕하 15:27의 20년은 다른 왕들의 재위와 앗수르·애굽 연동상 불가능하므로, 페카가 길르앗에 기반을 둔 지역 세력으로 므나헴 치세부터 "왕 노릇" 한 기간을 합산했다는 설이 유력하다 <span class="c m">M</span> <span class="c d">D</span> <span class="c hb">Hb</span>. 호세아 5:5의 이스라엘–에브라임 이분(二分)이 이 상태를 반영할 수 있다 <span class="c d">D</span>.</p>
+  </div>
+
+  <p><strong>시리아-에브라임 전쟁.</strong> 페카가 다메섹의 르신과 동맹해 아하스의 유다·예루살렘을 친 사건(약 735/734; 왕하 16:5–9; 사 7장; 대하 28장)이다 <span class="c d">D</span>. <span class="c hb">Hb</span>는 5:8–7:16의 상당 부분을 이 전쟁과 연결한다. 다만 <span class="c m">M</span>과 <span class="c g">G</span>는 본문의 <strong>비역사화(de-particularizing)</strong> 경향—특정 사건의 세부를 지우고 일반화한 편집—때문에 개별 구절과 사건의 대응은 대체로 추정에 그친다고 본다. <span class="c g">G</span>: 이 책은 독자에게 "숨은 역사적 단서를 찾으라"가 아니라 "초시간적 담론의 틀로 읽으라" 청한다.</p>
+
+  <div class="note">
+    <div class="tt">사마리아의 최후 — 살만에셀 5세와 사르곤 2세</div>
+    <p><span class="c d">D</span>가 사료의 난제를 정리한다. 호세아(왕)가 "애굽 왕 소"(왕하 17:4; 오소르콘 4세? 또는 사이스?)에게 원조를 청하며 조공을 끊자 살만에셀 5세가 사마리아를 3년간 포위(앗수르 사료엔 3년 포위 확증 없으나 침묵이 반증은 아님), <strong>722년 함락</strong>. 그런데 후계자 사르곤 2세가 자기 업적으로 사마리아 정복(27,000명 유배)을 주장한다. <span class="c d">D</span>의 절충: 성경 본문의 자연스러운 독법은 <strong>살만에셀에게의 항복</strong>이고(왕하 17:3, 6의 유일한 왕이 그), 사르곤이 720/719년(하맛 반란기)에 재차 조치했을 개연성도 있다. 요컨대 두 주장 모두 사실에 뿌리를 둘 수 있다. <span class="c m">M</span>은 13:1–13을 <strong>사마리아 함락 직후</strong> 상황으로 배치하는 것이 가장 자연스럽다고 본다.</p>
+  </div>
+
+  <p><strong>사역 기간.</strong> 표제(1:1)의 왕 명단이 관건이다. <span class="c kd">KD</span>는 웃시야–히스기야를 문자대로 계산해 <strong>약 60–65년의 이례적으로 긴 사역</strong>으로 본다(엘리사의 50년 사역을 병례로 든다). <span class="c hb">Hb</span>는 대략 40년(주전 752경–725경)으로, 아하스·히스기야 초기 유다에서 마친 것으로 본다. <span class="c m">M</span>은 약 30년(약 750–720)을 취하되, 이는 흔들리게 잡아야 할 추정임을 명시한다. <span class="c s">S</span>는 결혼(약 760)부터 마지막 장까지 열린 폭으로 둔다.</p>
+
+  <h3 id="p1-marriage">3. 호세아의 결혼 — 이 책의 최대 해석 쟁점</h3>
+
+  <p>1:2와 3:1의 두 명령("음란한 여인을 취하라", "다시 가서 … 사랑하라")은 호세아 해석의 심장이자 최대 난제다. 주석들은 <strong>①실재성 ②동일인 여부 ③고멜의 신분 ④3장이 1장의 속편인가</strong>라는 네 축에서 갈린다.</p>
+
+  <table>
+    <tr><th style="width:14%">쟁점</th><th>주석별 입장</th></tr>
+    <tr>
+      <td class="head">실재 결혼인가</td>
+      <td><strong>실재</strong> <span class="c k">K</span> <span class="c hb">Hb</span> <span class="c d">D</span> <span class="c s">S</span> <span class="c g">G</span> <span class="c m">M</span> — 예언자의 상징 행위(사 7–8장, 8:1–4의 자녀 명명, 사 20장의 벌거벗음)와 가장 잘 병행함 <span class="c d">D</span>. · <strong>내적 환상</strong> <span class="c kd">KD</span> — 두 번의 명령을 문자적 외적 결혼으로 보면 하나님의 거룩과 충돌하므로(특히 <strong>두 번째</strong> 간음한 여인을 "취하여 사랑하라"는 명령), 예언자의 영적 직관 속에서 일어난 사건으로 본다. 다만 단순한 비유(parable)나 시적 허구도 아니다 — 내적 경험도 외적 경험 못지않은 실재성을 가진다 <span class="c kd">KD</span>.</td>
+    </tr>
+    <tr>
+      <td class="head">1장·3장 동일인?</td>
+      <td><strong>동일인(고멜)</strong> <span class="c k">K</span> <span class="c hb">Hb</span> <span class="c d">D</span> <span class="c g">G</span> <span class="c m">M</span> — 한 배우자가 이스라엘의 집단 정체성을 간음에서 화해까지 대표하는 편이 상징이 더 잘 유지됨 <span class="c d">D</span>. · <strong>다른 여인</strong> <span class="c kd">KD</span> — 3:1의 부정관사 <span class="hw">אִשָּׁה</span>("한 여자", "네 아내"가 아님)와 값을 주고 "샀다"(3:2, <span class="hw">כרה</span>)는 표현은 아직 소유하지 않은 여인을 전제한다. · <strong>미정</strong> <span class="c s">S</span> — 3장이 고멜과 동일함을 <strong>증명할 자료가 없다</strong>. 두 번(아마 다른 여인) 결혼했을 수 있고, 3장의 두 번째 결혼 때 고멜은 이미 오래전에 죽었을 수도 있다.</td>
+    </tr>
+    <tr>
+      <td class="head">고멜의 신분</td>
+      <td><strong>이미 창기</strong> <span class="c k">K</span> — 미래를 앞당긴 표현일 수도 있으나 "이미 창기였다"는 더 거친 견해가 옳다. 단, 성전 창기(4:14의 다른 단어)로 완화해서는 안 됨. · <strong>본문은 말하지 않음</strong> <span class="c s">S</span> <span class="c m">M</span> — 고멜의 직업·정절에 대한 진술이 <strong>없다</strong>. "음란한 여인"(1:2)은 언약을 깬 모든 이스라엘 사람이 그러하다는 뜻이지 직업의 진술이 아님 <span class="c s">S</span>. <span class="c m">M</span>: 고멜이 <strong>호세아를 상대로</strong> 음행했다는 근거가 본문에 전혀 없다. 자녀의 출생 형식("그에게 낳으니라"의 유무)에서 부정(不貞)을 읽어내는 것은 침묵에의 과잉 해석이다.</td>
+    </tr>
+  </table>
+
+  <div class="caveat">
+    <div class="tt">쟁점 — 결혼은 완성되었는가(3:3)</div>
+    <p><span class="c s">S</span>의 독특한 논점이다. 3:3("너는 많은 날 동안 나와 함께 지내고 음행하지 말라 … 나도 네게 그리하리라")을 <strong>결혼의 미완성(non-consummation)</strong>으로 읽는다. 그렇다면 "하나님이 명하시어 창기와 결혼했다"는 흥미로운 관념은 무뎌진다 — 결혼이 완성되지 않았기 때문이다. 두 번째 결혼(3장)의 정절 요구는 <strong>앗수르에 의한 이스라엘의 임박한 유폐(幽閉)의 예언</strong>이다. 이 관점에서 1–3장의 초점은 호세아와 그의 가족이 아니라 <strong>하나님과 이스라엘</strong>이며, 호세아의 감정·경험에 대해서는 배울 것이 거의 없다 <span class="c s">S</span>.</p>
+  </div>
+
+  <div class="note">
+    <div class="tt">해석사의 무게 — 왜 명령했는가</div>
+    <p><span class="c m">M</span>은 칼뱅을 인용해 이 명령이 고대 해석자들을 얼마나 곤혹스럽게 했는지 보인다("바울이 감독에게 요구한 것을 예언자에게도 요구했을 터인데…"). <span class="c kd">KD</span>는 제롬 이래의 구제적 독법(타락한 여인을 구원하고 방치된 자녀를 양육하려는 명령이라면 하나님의 긍휼과 부합)을 소개하되, 본문이 그 목적을 명시하지 않으므로 외적 결혼의 논거로 삼을 수 없다고 판정한다. <span class="c hb">Hb</span>는 방향을 바꾼다. 페미니즘적 함의를 정직하게 다루되, 고멜은 <strong>이스라엘 여성 일반이 아니라 예외</strong>이고, "아내"만이 아니라 "아들"(11:1–4)도 지배 이미지이며(남성성도 규탄됨), 이 이야기는 결혼을 가르치려는 것이 아니라 하나님의 대응을 가르치려는 것이므로 당대 문화 틀 안에서 작동하되 <strong>그 틀을 넘어선다</strong>(3:1의 "사랑하라"가 사형이 정상이었을 법적 정황에서 용서·화해를 함의). 곧 이 이야기는 복음에서 만개할 여성 이해의 한 단계다 <span class="c hb">Hb</span>.</p>
+  </div>
+
+  <h3 id="p1-cult">4. 제의·바알·"하나님을 아는 지식"</h3>
+
+  <p><strong>벧엘·단의 송아지.</strong> <span class="c g">G</span>: 왕하 15장은 호세아 시대의 예배를 "느밧의 아들 여로보암의 혁신"—곧 금지된 방식(야훼의 형상)으로 야훼를 예배함—으로 규정한다. <span class="c m">M</span>은 <strong>정치와 제의를 분리하는 것 자체가 현대적 관념</strong>임을 지적한다. 벧엘의 송아지는 정치 중심이자 제의 중심이었다(암 7:10–13). 호세아에게는 벧엘/다른 바알과의 제의적 음행이나 앗수르·애굽에 대한 정치적 신뢰나 <strong>같은 "음행"</strong>이다 — 어느 영역에서든 야훼가 아닌 다른 것에게로 돌아섬이기 때문이다.</p>
+
+  <div class="gold-box">
+    <div class="tt">바알(<span class="hw">בַּעַל</span>) — 다신교·혼합주의·정치동맹의 삼각 논쟁</div>
+    <p><span class="c d">D</span>의 부록이 정밀하다. 바알은 고유명사가 아니라 "소유자·주인"이라는 보통명사이며 혼인 동사("아내를 취하다")로도 쓰인다. 호세아의 일곱 용례(2:8, 13, 16, 17; 9:10; 11:2; 13:1)를 두고 세 해석이 경합한다. ①가나안 신들(다신교), ②야훼를 바알로 섬긴 <strong>혼합주의</strong>, ③정치 지도자·동맹(Kelle). <span class="c d">D</span>의 판정: 2:16("이스라엘이 나를 다시는 바알이라 일컫지 않으리라")은 <strong>일부가 야훼를 바알로 불렀음</strong>을 강하게 함의하며, 나머지 용례도 대체로 야훼 외의 신을 가리킨다. 정치동맹이 배경에 있더라도 바알을 인간 지도자로 재해석하는 것은 어휘상 8세기 히브리어에 근거가 약하다.</p>
+    <p><strong>"내 남편"이지 "내 바알"이 아니다(2:16).</strong> <span class="c d">D</span>: 이스라엘이 야훼를 <span class="hw">אִישִׁי</span>(이쉬, "내 남편/내 남자")로 부르는 것은 언약적 친밀의 표지다. 가나안 만신전의 위계·역할 분화보다 <strong>더 큰 상호성</strong>을 가리키는 은유다. 다만 야훼는 이스라엘/사마리아가 본질상 여성이 아니듯 본질상 남성이 아니며, 성별로 규정되기를 초월한다 <span class="c d">D</span>.</p>
+  </div>
+
+  <p><strong>"하나님을 아는 지식"(<span class="hw">דַּעַת</span> 다아트).</strong> <span class="c hb">Hb</span>는 이를 <strong>언약 이해·순종을 가리키는 준(準)전문 용어</strong>로 본다(4:1, 6; 6:6). <span class="c d">D</span>는 관계적 함의를 강조한다. "알다"(<span class="hw">ידע</span>)는 혼인의 친밀(창 4:1)을 가리키기도 하며, 야훼가 이스라엘을 "안다"는 것은 택하여 자기 것으로 삼음이고, 이스라엘이 야훼를 "안다"는 것은 그 헌신에 화답하고 그 가르침에 순종함이다 — 관계적·인지적 두 측면이 있다 <span class="c d">D</span>. <span class="c k">K</span>: 이 지식은 최소한의 경건이 아니라 <strong>발전하는 관계</strong>이며(6:6의 절정), 예수의 영생 정의(요 17:3)로 이어진다.</p>
+
+  <div class="back"><a href="#top">↑ 처음으로</a></div>
+</section>
+
+<hr class="furrow">
+
+<!-- ══════════════ Ⅱ부 · 각 장 주해 ══════════════ -->
+<section class="part" id="part2">
+  <div class="part-head">
+    <div class="heb">מִדְבָּר</div>
+    <div class="eyebrow">PART Ⅱ</div>
+    <h2>각 장 주해 — 본문·원어·메시지</h2>
+    <div class="gloss">미드바르, "광야" (호 2:14) — 심판의 자리이자 하나님이 다시 구애하시는 자리. 절 단위로, 히브리어와 함께</div>
+  </div>
+
+  <div class="note">
+    <div class="tt">읽는 법</div>
+    <p>정밀 주해가 필요한 절은 <span class="ref" style="display:inline">절 표시 블록</span>으로 떼어 히브리어와 함께 다루고, 나머지는 장 단위로 종합했다. 히브리어는 (발음, 뜻)을 병기했고, 각 해석에는 주석가 칩을 달았다(K 키드너 · G 골딩게이 · Hb 허버드 · D 디어먼 · KD 카일–델리치 · S 스튜어트 · M 문). 절 번호는 개역개정을 따르되, 마소라 본문(MT)이 다른 곳은 대괄호로 병기했다.</p>
+  </div>
+
+  <!-- ═══ 1장 ═══ -->
+  <div class="chap" id="ch1">
+    <h3><span class="chip-num">1</span> 이름 속에 담긴 심판과 반전 (1:1–2:1)</h3>
+    <p class="lead">세 아이의 이름이 곧 설교다 — 그리고 마지막에 그 이름들이 뒤집힌다 <span class="c k">K</span></p>
+
+    <div class="vs">
+      <span class="ref">1:1 — 표제</span>
+      <p>"웃시야와 요담과 아하스와 히스기야가 이어 유다 왕이 된 시대 곧 요아스의 아들 여로보암이 이스라엘 왕이 된 시대에 브에리의 아들 호세아에게 임한 여호와의 말씀이라." 북왕국 예언자인데 <strong>유다 왕들을 먼저, 넷이나</strong> 열거하고 북왕은 여로보암 2세 하나만 든다. <span class="c k">K</span>: 여로보암 이후의 북왕을 언급하지 않는 것은, 아모스처럼(암 7:12) 호세아도 말년에 유다 땅에서 예언하도록 내몰렸을 가능성을 시사한다. 이름 <span class="hw">הוֹשֵׁעַ</span>(호셰아, "그가 구원하셨다/구원하소서")는 <span class="hw">יְהוֹשֻׁעַ</span>(여호수아)·예수아·예수와 같은 어근으로, 이 책이 심판만이 아니라 <strong>구원</strong>을 말할 것을 이름부터 예고한다 <span class="c k">K</span>.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">1:2 — 결혼 명령</span>
+      <p>"여호와께서 <strong>비로소</strong> 호세아에게 말씀하시니라(<span class="hw">תְּחִלַּת דִּבֶּר־יְהוָה</span>, 테힐라트 디베르-야훼) … 너는 가서 <strong>음란한 여자</strong>(<span class="hw">אֵשֶׁת זְנוּנִים</span>, 에셰트 제누님)를 맞이하여 음란한 자식들을 낳으라." <span class="c k">K</span>: "음란"은 <strong>부정사 절대형이 반복</strong>(<span class="hw">זָנֹה תִזְנֶה</span>, 자노 티즈네)되어 강조된 표현으로, "온통 음란에 빠졌다"에 가깝다. <span class="hw">זְנוּנִים</span>(제누님)은 추상·강세 복수로 <strong>기질로서의 음란</strong>을 가리킨다. <span class="c s">S</span> <span class="c m">M</span>: 이 말은 고멜의 직업을 진술한 것이 아니라, 온 이스라엘의 <strong>언약 파기</strong>를 표지하는 예언자적 상징 행위의 지시다 — "음란"은 곧 다른 신을 좇는 배교의 은유다(1:2b, "이 나라가 여호와를 떠나 크게 음란함이니라"). <span class="c d">D</span>: 아내·자녀·땅이 다 함께 이스라엘을 표상하는 <strong>가정(household) 은유</strong>의 출발점이다.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">1:4–5 — 첫째 이스르엘</span>
+      <p>"그의 이름을 <strong>이스르엘</strong>(<span class="hw">יִזְרְעֶאל</span>, "하나님이 씨 뿌리신다")이라 하라 조금 후에 내가 이스르엘의 피를 예후의 집에 갚으며." <span class="c k">K</span>: 이름 자체는 밝은 뜻("하나님이 심으신다")이나, 여기서는 예후가 이스르엘에서 저지른 유혈(왕하 9–10)에 대한 심판으로 <strong>어둡게 울린다</strong>. 히브리어 <span class="hw">פָּקַד</span>(파카드, "찾아가다/보응하다")가 심판의 열쇳말이다. 그러나 이 어두운 이름은 2:22–23에서 <strong>밝은 뜻으로 되돌아온다</strong> — 책 전체의 급전 구조가 이름 하나에 이미 새겨져 있다 <span class="c k">K</span>.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">1:6–7 — 둘째 로루하마, 그리고 유다</span>
+      <p>"그의 이름을 <strong>로루하마</strong>(<span class="hw">לֹא רֻחָמָה</span>, "긍휼히 여김을 받지 못한 자")라 하라." 어근 <span class="hw">רחם</span>(라함)은 <strong>어미의 태(</strong><span class="hw">רֶחֶם</span>, 레헴<strong>)</strong>에서 나온 말로, 부정된 것은 다름 아닌 <strong>모성적 자비</strong>다. 이는 출애굽기 34:6–7의 자기 계시("긍휼이 많고")를 뒤집는다 <span class="c d">D</span>. 1:7의 유다 언급("내가 유다 족속은 긍휼히 여겨 … 구원하되")은 오랜 논쟁거리다 — <strong>후대 유다 편집</strong>으로 보는 다수설과, <strong>본문 그대로</strong> 보아 이스라엘 심판의 일부로 긍휼을 유다에게로 돌린 것이라는 견해(<span class="c m">M</span>)가 갈린다. <span class="c d">D</span> <span class="c hb">Hb</span>: 호세아 자신은 유다를 시야에 두었고 최종 형태에 히스기야기 유다의 손길이 닿았을 개연성을 절충한다.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">1:9 — 셋째 로암미와 "나는 스스로 있는 자가 아니다"</span>
+      <p>"그의 이름을 <strong>로암미</strong>(<span class="hw">לֹא עַמִּי</span>, "내 백성이 아니다")라 하라 너희는 내 백성이 아니요 <strong>나는 너희 하나님이 되지 아니할 것임이니라</strong>." 마지막 구절의 히브리어는 <span class="hw">וְאָנֹכִי לֹא־אֶהְיֶה לָכֶם</span>(웨아노키 로-에흐예 라켐), 직역하면 "나는 너희에게 <strong>에흐예가 아니다</strong>"이다. 이는 출애굽기 3:14의 <span class="hw">אֶהְיֶה אֲשֶׁר אֶהְיֶה</span>(에흐예 아셰르 에흐예, "나는 스스로 있는 자")를 정면으로 부정한 것으로 <span class="c d">D</span> <span class="c g">G</span>, 언약 정형구 "나는 너희 하나님, 너희는 내 백성"(출 6:7)의 <strong>완전한 해체</strong>다. 세 이름이 심판의 절정에 이른다.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">1:10–2:1 [2:1–3] — 구름 사이의 틈</span>
+      <p>가장 어두운 지점 바로 뒤에 가장 밝은 약속이 온다. "그러나 이스라엘 자손의 수가 <strong>바닷가의 모래 같이</strong> 되어서 … 너희는 내 백성이 아니라 한 그 곳에서 <strong>너희는 살아 계신 하나님의 아들들이라</strong>(<span class="hw">בְּנֵי אֵל־חָי</span>, 베네 엘-하이) 할 것이라." 창세기 22:17의 아브라함 언약("바닷가의 모래")이 되살아나고, 세 이름이 순서대로 뒤집힌다. <span class="c k">K</span>: 이 결말은 "전혀 예상 밖의, 놀라운" 반전이다. 바울이 로마서 9:26에서, 베드로가 벧전 2:10에서 이 구절을 <strong>이방인의 하나님 백성 편입</strong>에 적용한다 — <span class="c m">M</span>: 호세아는 권리를 잃은 자의 회복을, 바울은 애초에 권리 없던 자의 부르심을 말하되, 공통 원리는 "하나님의 백성이 아니던 자가 하나님의 은혜로 그의 백성이 된다"는 것이다 <span class="c g">G</span>.</p>
+    </div>
+    <div class="note">
+      <div class="tt">이름의 신학</div>
+      <p>세 이름(이스르엘·로루하마·로암미)은 <strong>심판의 사다리</strong>를 오르고(피의 보응→긍휼 철회→언약 파기), 1:10–2:1에서 <strong>역순으로 내려온다</strong>(내 백성→긍휼 받음→하나님이 심으심). <span class="c k">K</span>: 이름이 곧 신학이며, "로(<span class="hw">לֹא</span>, 아니다)"라는 부정어 하나를 떼어 내는 것이 곧 복음이다. 2:1의 "로(부정)를 떼라"는 명령이 이 책 전체를 압축한다.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 2장 ═══ -->
+  <div class="chap" id="ch2">
+    <h3><span class="chip-num">2</span> 연인들과 참 연인 (2:2–23 [4–25])</h3>
+    <p class="lead">법정 고발(리브)에서 시작해 광야의 구애로, 다시 약혼 서약으로 — 심판의 언어가 하나씩 사랑의 언어로 뒤집힌다 <span class="c k">K</span></p>
+
+    <div class="vs">
+      <span class="ref">2:2–13 [4–15] — 어머니에 대한 고발</span>
+      <p>"너희 어머니와 <strong>논쟁하라</strong>(<span class="hw">רִיבוּ</span>, 리부) … 그는 내 아내가 아니요 나는 그의 남편이 아니라." <span class="hw">רִיב</span>(리브)는 <strong>언약 소송</strong>의 전문 용어로(미 6:2; 호 4:1), 남편이 아내를, 곧 야훼가 이스라엘을 법정에 세우는 형식이다 <span class="c g">G</span>. 핵심 오해는 2:8[10]에 있다 — "곡식과 새 포도주와 기름은 내가 준 것이요 … 그가 <strong>알지 못하고</strong>(<span class="hw">לֹא יָדְעָה</span>, 로 야드아) 그것을 바알에게 드렸느니라." 풍요의 근원을 오인한 것이 곧 배교다 <span class="c hb">Hb</span> <span class="c d">D</span>. 벌은 "가시로 그 길을 막고"(2:6) 풍요를 거두는 것 — 은유의 논리상 형벌은 <strong>버림받은 사랑의 통곡</strong>이다.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">2:14–15 [16–17] — 광야의 구애</span>
+      <p>"그러므로 보라 내가 그를 <strong>타일러</strong>(<span class="hw">מְפַתֶּיהָ</span>, 메파테하) 거친 들(<span class="hw">מִדְבָּר</span>, 미드바르)로 데리고 가서 <strong>말로 위로하고</strong>(<span class="hw">וְדִבַּרְתִּי עַל־לִבָּהּ</span>, 다바르티 알-리바, 직역 '그 마음에 대고 말하고')." <span class="c k">K</span>: <span class="hw">פתה</span>(파타)는 처녀를 <strong>꾀어 마음을 얻는</strong> 구애의 동사(출 22:16; 삿 14:15)로, 강압이 아니라 <strong>연인의 설득</strong>이다. 심판의 광야(2:3, 5)가 이제 <strong>신혼의 광야</strong>로 뒤집힌다. "아골 골짜기(<span class="hw">עֵמֶק עָכוֹר</span>, 재앙의 골짜기, 수 7장 아간)로 소망의 문(<span class="hw">פֶּתַח תִּקְוָה</span>, 페타흐 티크바)을 삼아 주리니" — 저주의 장소가 소망의 문이 되는 언어유희다 <span class="c d">D</span>.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">2:16–20 [18–22] — "내 남편", 그리고 약혼 정형구</span>
+      <p>"네가 나를 <strong>내 남편</strong>(<span class="hw">אִישִׁי</span>, 이시)이라 일컫고 다시는 <strong>내 바알</strong>(<span class="hw">בַּעְלִי</span>, 바알리)이라 일컫지 아니하리라." 두 단어 모두 "남편"을 뜻하지만, <span class="hw">בַּעַל</span>은 동시에 이방 신 <strong>바알</strong>이자 "주인/소유자"의 어감을 지닌다 — 소유·지배의 관계에서 <strong>상호 사랑의 관계</strong>로의 전환이다 <span class="c d">D</span>. 이어 세 번 반복되는 약혼 서약: "내가 네게 <strong>장가들어</strong>(<span class="hw">וְאֵרַשְׂתִּיךְ לִי</span>, 에라스티크 리) … <strong>공의와 정의와 인애와 긍휼로</strong>(<span class="hw">בְּצֶדֶק וּבְמִשְׁפָּט וּבְחֶסֶד וּבְרַחֲמִים</span>) … <strong>진실함으로</strong>(<span class="hw">בֶּאֱמוּנָה</span>, 베에무나) … 그리하면 네가 <strong>여호와를 알리라</strong>(<span class="hw">וְיָדַעַתְּ אֶת־יְהוָה</span>)." <span class="c k">K</span>: <span class="hw">ארשׂ</span>(아라스)는 <strong>재혼이 아니라 약혼</strong>—첫 언약을 처음처럼 새로 맺는 것이다. 로루하마·로암미 이름에 들어 있던 <span class="hw">רחם</span>(긍휼)·<span class="hw">עם</span>(백성)이 이 서약 안에서 회복된다 <span class="c d">D</span>.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">2:21–23 [23–25] — 이스르엘의 반전, "나의 백성"</span>
+      <p>"내가 나를 위하여 그를 <strong>이 땅에 심고</strong>(<span class="hw">וּזְרַעְתִּיהָ לִּי בָּאָרֶץ</span>, 우즈라티하 리 바아레츠) <strong>로루하마를 긍휼히 여기며</strong> 로암미에게 이르기를 <strong>너는 내 백성이라</strong> 하리니." 첫 아이 이름 <strong>이스르엘</strong>("하나님이 심으신다")이 마침내 <strong>본래의 밝은 뜻</strong>으로 성취된다 — 피의 골짜기가 파종의 땅이 된다 <span class="c k">K</span>. 세 이름이 모두 뒤집혔다. 이 구절(2:23)과 1:10을 바울이 로마서 9:25에서, 베드로가 벧전 2:10에서 <strong>인용</strong>한다.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 3장 ═══ -->
+  <div class="chap" id="ch3">
+    <h3><span class="chip-num">3</span> "여호와께서 사랑하시듯" — 값을 치르는 사랑 (3:1–5)</h3>
+    <p class="lead">1인칭으로 돌아온 아홉 구절. 수사(修辭) 없이, 사서 되찾는 사랑을 담담히 말한다 <span class="c k">K</span></p>
+
+    <div class="vs">
+      <span class="ref">3:1 — "다시 가서 사랑하라"</span>
+      <p>"여호와께서 내게 이르시되 이스라엘 자손이 다른 신을 섬기고 건포도 과자(<span class="hw">אֲשִׁישֵׁי עֲנָבִים</span>, 아시셰 아나빔)를 즐길지라도 여호와가 그들을 사랑하나니 너는 <strong>또</strong>(<span class="hw">עוֹד</span>, 오드) 가서 … 여인을 사랑하라." <span class="c k">K</span>: 이 절의 문법이 곧 복음이다 — 하나님의 사랑을 재는 잣대가 이스라엘의 사랑스러움이 아니라 <strong>하나님 자신의 성품</strong>이다. "여호와께서 사랑하시듯(<span class="hw">כְּאַהֲבַת יְהוָה</span>)"이 명령의 근거다. <span class="c kd">KD</span>는 "또(오드)"와 부정관사 "한 여자(<span class="hw">אִשָּׁה</span>, 이샤)"를 근거로 3장의 여인을 <strong>고멜과 다른 여인</strong>으로 보고, 1–3장 전체를 외적 사건이 아닌 <strong>내적 환상</strong>으로 읽는다(둘째 결혼이 하나님의 거룩과 충돌하지 않도록). 그러나 K·Hb·D·G·M은 <strong>같은 고멜</strong>로 본다 — 되찾음의 값이 곧 요점이기 때문이다.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">3:2–3 — "은 열다섯과 보리로 그를 샀다"</span>
+      <p>"내가 은 열다섯 개와 보리 한 호멜 반으로 그를 <strong>사고</strong>(<span class="hw">וָאֶכְּרֶהָ</span>, 와에케레하)." <span class="hw">כרה</span>(카라)는 "값 주고 취득하다"로, 그가 이미 <strong>남의 소유/속박</strong> 아래 있었음을 전제한다 <span class="c d">D</span>. 값이 노예 몸값(출 21:32의 은 30)의 절반 남짓에 곡물을 더한 <strong>초라한 액수</strong>라는 점이 오히려 사랑의 치욕적 무게를 드러낸다. <span class="c s">S</span>는 3:3("너는 많은 날 동안 나와 함께 지내고 음행하지 말라")을 <strong>동침하지 않는 기간</strong>으로 읽어 앗수르 유폐의 상징으로 본다(소수설).</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">3:4–5 — 왕도 제사도 없이, 그 후에 돌아오리라</span>
+      <p>"이스라엘 자손들이 <strong>왕도 없고 지도자도 없고 제사도 없고 주상도 없고 에봇도 없고 드라빔도 없이</strong> 지내다가 그 <strong>후에</strong>(<span class="hw">אַחַר</span>, 아하르) … 여호와와 그들의 왕 <strong>다윗</strong>을 찾고 <strong>마지막 날에</strong>(<span class="hw">בְּאַחֲרִית הַיָּמִים</span>, 베아하리트 하야밈) 여호와를 경외하리라." <span class="c k">K</span>: 정치(왕·주상)·제의(제사·에봇·드라빔)의 모든 버팀목을 잃은 <strong>박탈의 기간</strong>이 회복의 전제다. "다윗"은 북왕국에게 <strong>다윗 왕조로의 재통합</strong>을 뜻하는 놀라운 말이다 <span class="c d">D</span>. <span class="c m">M</span>: 이 다윗적 소망이 신약의 메시아 대망으로 이어진다.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 4장 ═══ -->
+  <div class="chap" id="ch4">
+    <h3><span class="chip-num">4</span> 지식 없는 백성 — 하나님의 소송 (4:1–19)</h3>
+    <p class="lead">1–3장의 행복한 결말 뒤, 이제 예언의 본론(4–14장)이 법정 고발로 시작한다 <span class="c k">K</span></p>
+
+    <div class="vs">
+      <span class="ref">4:1 — 소송의 세 결핍: 진실·인애·지식</span>
+      <p>"이스라엘 자손들아 여호와의 말씀을 들으라 여호와께서 이 땅 주민과 <strong>논쟁하시나니</strong>(<span class="hw">רִיב</span>, 리브) 이 땅에는 <strong>진실도 없고 인애도 없고 하나님을 아는 지식도 없고</strong>." 이 삼중 진단이 4–14장 전체의 주제다. <span class="c kd">KD</span>의 원어 풀이: <span class="hw">אֱמֶת</span>(에메트)는 <strong>말과 행실의 진실성</strong>—"아무도 서로 신뢰하지 않음"(렘 9:3–4); <span class="hw">חֶסֶד</span>(헤세드)는 일반적 사랑이 아니라 <strong>낮은 자·도움이 필요한 자를 향한 긍휼의 사랑</strong>; <span class="hw">דַּעַת אֱלֹהִים</span>(다아트 엘로힘)은 단순한 지적 앎이 아니라 <strong>하나님의 사랑·신실·긍휼을 마음의 경험으로 아는 것</strong>이다. 셋은 서로 뿌리다 — 제롬의 말대로 "진실은 긍휼 없이 지탱될 수 없고, 긍휼은 진실 없이 사람을 방종하게 한다" <span class="c kd">KD</span>. <span class="c g">G</span>: 다아트는 정보의 축적이 아니라 <strong>하나님을 하나님으로 인정함=복종</strong>이다.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">4:2 — 십계명의 어두운 그림자</span>
+      <p>"오직 <strong>저주와 속임과 살인과 도둑질과 간음뿐이요</strong> 포악하여 피가 피를 뒤이음이라." <span class="c kd">KD</span>: 다섯 죄가 모두 <strong>부정사 절대형</strong>으로 나열되어 각 행위를 힘주어 부각한다. 이 목록은 십계명을 되짚는다 — <strong>맹세(제2계명)·살인(제6)·도둑질(제8)·간음(제7)</strong> 등 후반부 계명의 위반이다 <span class="c d">D</span> <span class="c m">M</span>. "포악하여"(<span class="hw">פָּרָצוּ</span>, 파라추)는 강도·살인처럼 <strong>남에게 폭력으로 침입함</strong>이고, "피가 피를 뒤이음(<span class="hw">דָּמִים בְּדָמִים נָגָעוּ</span>)"은 유혈이 유혈로 이어지는 무법 상태다 <span class="c kd">KD</span>.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">4:3 — 땅과 짐승까지 시드는 창조의 애통</span>
+      <p>"그러므로 이 땅이 슬퍼하며(<span class="hw">תֶּאֱבַל</span>, 테에발) … 들짐승과 공중의 새와 바다의 고기가 다 없어지리라." <span class="c g">G</span>: 사람·짐승·새·물고기가 <strong>창세기 1장의 창조 질서</strong>(땅·하늘·바다)를 거꾸로 되짚으며, 사람의 죄가 <strong>창조 세계 전체</strong>를 시들게 한다. <span class="c kd">KD</span>: 가뭄과 기근의 자연적 결과이자 언약 저주의 실현이다. 로마서 8:19–22("피조물이 함께 탄식하며")의 구약적 뿌리다 <span class="c m">M</span>.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">4:6 — "지식이 없어 망하는 내 백성"</span>
+      <p>"내 백성이 <strong>지식이 없으므로</strong>(<span class="hw">מִבְּלִי הַדַּעַת</span>, 미벨리 하다아트) 망하는도다 네가 지식을 버렸으니 나도 너를 버려 내 제사장이 되지 못하게 할 것이요 네가 네 하나님의 율법(토라)을 잊었으니 나도 네 자녀들을 잊어버리리라." <span class="c kd">KD</span>: "그 지식"(정관사)은 4:1의 <strong>다아트 엘로힘</strong>을 되받는다. 이스라엘은 토라에서 그 지식을 길을 수 있었으나 <strong>거부했고</strong>, 그 결과 제사장 나라(출 19:6)의 특권을 잃는다. <span class="c hb">Hb</span>: 이 절이 <strong>가르치는 자의 사명</strong>을 겨눈다 — 말씀을 잃으면 백성이 무너진다. 예수의 "맹인이 맹인을 인도하면"(마 15:14)이 이 파산한 지도력을 겨눈다 <span class="c hb">Hb</span>.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">4:12, 16–17 — 음란의 영, 완고한 암소, "버려두라"</span>
+      <p>"<strong>음란한 영</strong>(<span class="hw">רוּחַ זְנוּנִים</span>, 루아흐 제누님)에 미혹되어 … 그들이 나무에게 묻고 막대기의 지시를 받으니." <span class="c kd">KD</span>: 음란이 백성을 사로잡은 <strong>귀신적 세력</strong>으로 그려진다. 4:16 "이스라엘은 <strong>완강한 암소</strong>(<span class="hw">סוֹרֵר</span>, 소레르)처럼 완강하니"(신 21:18의 "완악한 아들"과 같은 말) — 멍에를 지기 싫어하는 이스라엘을 넓은 들의 어린 양처럼 <strong>흩어짐에 내어 주시겠다</strong>는 역설적 심판이다. 4:17의 절정: "에브라임이 <strong>우상과 연합하였으니</strong>(<span class="hw">חֲבוּר עֲצַבִּים</span>, 하부르 아차빔) <strong>버려두라</strong>(<span class="hw">הַנַּח־לוֹ</span>, 한나흐-로)." <span class="c k">K</span>: 하나님의 "버려두라"가 가장 무서운 심판이다 — 원하는 대로 하도록 내버려 두심.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 5장 ═══ -->
+  <div class="chap" id="ch5">
+    <h3><span class="chip-num">5</span> 좀과 사자 — 하나님의 물러나심 (5:1–15)</h3>
+    <p class="lead">여러 조각 그림으로 어둠이 짙어진다. 심판이 좀처럼 은밀히, 사자처럼 사납게 <span class="c k">K</span></p>
+    <p>제사장·왕실에까지 겨눈 고발(5:1) 후, 두 개의 잊히지 않는 은유가 나온다. "내가 에브라임에게는 <strong>좀 같으며</strong>(<span class="hw">כָּעָשׁ</span>, 카아쉬) 유다 족속에게는 <strong>썩이는 것 같으니</strong>(<span class="hw">כָּרָקָב</span>, 카라카브)"(5:12) — 눈에 띄지 않게 서서히 갉는 부패다 <span class="c hb">Hb</span>. 이어 정반대의 이미지: "내가 에브라임에게는 <strong>사자 같고</strong>(<span class="hw">כַּשַּׁחַל</span>, 카샤할) … 내가 움켜 가리니 건질 자 없으리라"(5:14). "그들이 <strong>양 떼와 소 떼를 끌고</strong> 여호와를 찾을지라도 만나지 못할 것은 이미 그들에게서 떠나셨음이라"(5:6) — 제물로는 인격적 만남을 대신할 수 없다 <span class="c k">K</span>.</p>
+    <div class="vs">
+      <span class="ref">5:15 — "내가 내 곳으로 돌아가리라"</span>
+      <p>"내가 <strong>내 곳으로 돌아가서</strong>(<span class="hw">אֵלֵךְ אָשׁוּבָה אֶל־מְקוֹמִי</span>, 엘레크 아슈바 엘-메코미) 그들이 그 죄를 뉘우치고 내 얼굴을 구하기까지 있으리라 그들이 고난받을 때에 나를 <strong>간절히 구하리라</strong>(<span class="hw">יְשַׁחֲרֻנְנִי</span>, 예샤하루네니, '새벽부터 찾으리라')." <span class="c k">K</span>: 하나님의 <strong>물러나심</strong>이 심판이자 회복의 계기다 — "하나님이 자기 곳으로 돌아가심"은 모든 돌이킴을 낳는 돌이킴이다. 이 절이 6:1–3의 회개 촉구로 곧장 이어진다.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 6장 ═══ -->
+  <div class="chap" id="ch6">
+    <h3><span class="chip-num">6</span> "여호와를 알자" — 그리고 아침 구름 같은 인애 (5:15–7:2)</h3>
+    <p class="lead">기슭 사이의 고지대. "우리가 여호와를 알자"는 부름과, 그것을 무색하게 하는 진단이 부딪친다 <span class="c k">K</span></p>
+
+    <div class="vs">
+      <span class="ref">6:1–3 — "셋째 날에 우리를 일으키시리라"</span>
+      <p>"오라 우리가 여호와께로 <strong>돌아가자</strong>(<span class="hw">נָשׁוּבָה</span>, 나슈바) … <strong>이틀 후에 우리를 살리시며 셋째 날에 우리를 일으키시리니</strong>(<span class="hw">בַּיּוֹם הַשְּׁלִישִׁי יְקִמֵנוּ</span>) … 힘써 여호와를 <strong>알자</strong>(<span class="hw">וְנֵדְעָה נִרְדְּפָה לָדַעַת אֶת־יְהוָה</span>)." <span class="c k">K</span>: 이 회개의 노래를 두고 두 독법이 갈린다 — 하나님이 <strong>이끌어 내실 참 회심의 모델</strong>(K 선호; 6:6이 이와 충돌하지 않는다)인가, 아니면 <strong>안이한 추정</strong>(값싼 자신감)인가. "이틀…셋째 날"은 청중에겐 "곧"의 뜻이나, <span class="c k">K</span>는 예언자가 아는 것보다 깊이 말했을 가능성—바울의 "성경대로 사흘 만에 다시 살아나사"(고전 15:4)가 요나의 표적과 함께 이 본문을 염두에 두었을 여지—를 조심스레 연다. <span class="c g">G</span>: 성령의 눈에 반짝임이 있었을지 모른다(터툴리안도 이 연결을 지었다).</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">6:4 — "너희 인애가 아침 구름 같도다"</span>
+      <p>"에브라임아 내가 네게 어떻게 하랴 … 너희의 <strong>인애가 아침 구름 같으며</strong>(<span class="hw">חַסְדְּכֶם כַּעֲנַן־בֹּקֶר</span>, 하스데켐 카아난-보케르) 쉬 없어지는 이슬 같도다." 백성이 하나님께 드려야 할 <strong>헤세드</strong>가 해 뜨면 사라지는 안개처럼 덧없다 <span class="c hb">Hb</span>. "내가 네게 어떻게 하랴"는 하나님의 <strong>고뇌 어린 물음</strong>으로, 11장의 자문("어찌 너를 놓겠느냐")을 예비한다 <span class="c g">G</span>.</p>
+    </div>
+
+    <div class="vs">
+      <span class="ref">6:6 — "나는 인애를 원하고 제사를 원하지 아니하며"</span>
+      <p>"나는 <strong>인애를 원하고 제사를 원하지 아니하며</strong>(<span class="hw">כִּי חֶסֶד חָפַצְתִּי וְלֹא־זָבַח</span>) <strong>하나님을 아는 것을 번제보다 더 원하노라</strong>(<span class="hw">וְדַעַת אֱלֹהִים מֵעֹלוֹת</span>)." 이 책의 신학이 한 절에 응축된다 — <span class="hw">חֶסֶד</span>(헤세드, 인애)와 <span class="hw">דַּעַת אֱלֹהִים</span>(다아트, 지식)이 제의보다 앞선다. 히브리어 <span class="hw">מִן</span>(민, '~보다')은 제사의 <strong>전면 폐기가 아니라 우선순위</strong>를 말한다 <span class="c hb">Hb</span>. 예수가 이 절을 칠십인역 그대로 <strong>두 번 인용</strong>한다 — 세리와 함께 잡수시며(마 9:13), 안식일 논쟁에서(마 12:7). <span class="c g">G</span>: 사무엘이 사울에게 한 말(삼상 15:22, "순종이 제사보다 낫다")과 같은 원리를 온 백성에게 적용한 것이다.</p>
+    </div>
+    <p>6:7("그들은 <strong>아담처럼</strong>[또는 '사람처럼', <span class="hw">כְּאָדָם</span>] 언약을 어기고")부터 7:2까지 언약 위반의 목록이 이어진다. <span class="c d">D</span>: <span class="hw">כְּאָדָם</span>은 "아담처럼"(창 3장)으로도, "사람이 흔히 그러듯"으로도, 지명 "아담에서"(수 3:16)로도 읽혀 정하기 어렵다.</p>
+  </div>
+
+  <!-- ═══ 7장 ═══ -->
+  <div class="chap" id="ch7">
+    <h3><span class="chip-num">7</span> 타락 — 화덕, 반쪽 구운 빵, 어리석은 비둘기 (7:3–16)</h3>
+    <p class="lead">호세아의 가장 빛나는 직유들이 여기 모여 왕궁의 부패를 드러낸다 <span class="c k">K</span></p>
+    <p>궁정의 음모가 <strong>화덕(</strong><span class="hw">תַּנּוּר</span>, 탄누르<strong>)</strong>의 이미지로 그려진다 — "그들이 다 간음하는 자라 빵 굽는 자가 달구는 화덕과 같도다"(7:4), 밤새 잠재운 불이 아침에 타오르듯 음모가 무르익어 왕들을 삼킨다(7:6–7, "그들의 모든 왕이 다 엎드러졌으며"). "에브라임은 <strong>뒤집지 않은 전병</strong>(<span class="hw">עֻגָה בְּלִי הֲפוּכָה</span>, 우가 벨리 하푸카)이로다"(7:8) — 한쪽은 타고 한쪽은 설익은, <strong>어정쩡한 혼합</strong>이다 <span class="c hb">Hb</span>. "에브라임은 <strong>어리석은 비둘기</strong>(<span class="hw">יוֹנָה פוֹתָה</span>, 요나 포타) 같이 지혜가 없어서 애굽을 향하여 부르짖으며 앗수르로 가는도다"(7:11) — 이 나라 저 나라를 오가는 <strong>어리석은 외교</strong>다 <span class="c g">G</span>. 결정적 진단: "그들이 <strong>마음으로 나를 부르짖지 아니하였고</strong> 오직 침상에서 슬피 부르짖으며"(7:14) — 진정한 돌이킴이 아니라 사적 탄식일 뿐이다 <span class="c g">G</span>.</p>
+  </div>
+
+  <!-- ═══ 8장 ═══ -->
+  <div class="chap" id="ch8">
+    <h3><span class="chip-num">8</span> 바람을 심고 광풍을 거두다 (8:1–14)</h3>
+    <p class="lead">한 주제가 이 장을 꿰뚫는다 — 스스로 만든 것들이 스스로를 삼킨다 <span class="c k">K</span></p>
+    <div class="vs">
+      <span class="ref">8:1, 4 — 언약 위반과 "내가 세우지 아니한 왕"</span>
+      <p>"<strong>나팔을 네 입에 댈지어다</strong>(<span class="hw">אֶל־חִכְּךָ שֹׁפָר</span>) 원수가 독수리처럼 여호와의 집에 덮치리니 이는 그들이 <strong>내 언약을 어기고 내 율법을 범함이로다</strong>(<span class="hw">עָבְרוּ בְרִיתִי וְעַל־תּוֹרָתִי פָּשָׁעוּ</span>)." 언약(<span class="hw">בְּרִית</span>, 베리트)과 토라의 위반이 심판의 근거로 명시된다 <span class="c s">S</span>. 8:4의 진단이 북왕국 정치사의 핵심을 찌른다 — "그들이 왕들을 세웠으나 <strong>내게서 난 것이 아니요</strong>(<span class="hw">הֵם הִמְלִיכוּ וְלֹא מִמֶּנִּי</span>, 헴 힘리쿠 벨로 미멘니) 그들이 지도자들을 세웠으나 내가 모르는 바이며." 여로보암 이래 반복된 <strong>왕위 찬탈</strong>이 하나님을 배제한 자기 손의 산물이다 <span class="c g">G</span>.</p>
+    </div>
+    <div class="vs">
+      <span class="ref">8:5–6 — 사마리아의 송아지</span>
+      <p>"사마리아여 네 송아지는 버려졌느니라 … 이것은 <strong>이스라엘에서 나고 장인이 만든 것이라 하나님이 아니니</strong>(<span class="hw">כִּי מִיִּשְׂרָאֵל וְהוּא חָרָשׁ עָשָׂהוּ וְלֹא אֱלֹהִים הוּא</span>) 사마리아의 송아지가 산산조각이 되리라." <span class="c hb">Hb</span>: 유일 주권자 야훼 앞에서 모든 형상은 <strong>생명 없는 희화</strong>다. 8:6의 "장인이 만든 것"이라는 논증이 우상숭배의 자기모순을 폭로한다.</p>
+    </div>
+    <div class="vs">
+      <span class="ref">8:7 — "바람을 심고 광풍을 거둔다"</span>
+      <p>"그들이 <strong>바람을 심고 광풍을 거둘 것이라</strong>(<span class="hw">כִּי רוּחַ יִזְרָעוּ וְסוּפָתָה יִקְצֹרוּ</span>, 루아흐 이즈라우 웨수파타 이크초루) 심은 것이 줄기가 없으며 이삭이 없고 알곡이 없으며." <span class="c g">G</span>: "뿌린 대로 거둔다"(갈 6:7)는 <strong>도덕적 실재의 결</strong>이며—더욱이 어리석은 일을 하면 열 배 더한 것이 되돌아온다("바람"을 심었는데 "광풍"을 거둔다). 언약 관계는 은혜가 선제하되(무조건), 그 위에 조건이 놓인다 <span class="c g">G</span>.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 9장 ═══ -->
+  <div class="chap" id="ch9">
+    <h3><span class="chip-num">9</span> 열국 가운데 유리하는 자들 (9:1–17)</h3>
+    <p class="lead">마지막 절의 "유리하는 자"라는 선고가 이 장 전체를 물들인다 <span class="c k">K</span></p>
+    <div class="vs">
+      <span class="ref">9:1, 3 — 기뻐하지 말라, 애굽으로 돌아가리라</span>
+      <p>"이스라엘아 너는 이방 사람처럼 <strong>기뻐하지 말라</strong>(<span class="hw">אַל־תִּשְׂמַח</span>, 알-티스마흐) … 그들이 여호와의 땅에 거주하지 못하며 에브라임은 <strong>애굽으로 다시 가고</strong> 앗수르에서 부정한 것을 먹을 것이니라"(9:3). <span class="c g">G</span>: "축하할 때가 있고 삼갈 때가 있다" — 하나님을 버렸다면 잔치조차 삼가야 한다. "애굽으로의 귀환"은 <strong>출애굽의 역전</strong>, 곧 구원사의 되감김이다 <span class="c hb">Hb</span>.</p>
+    </div>
+    <div class="vs">
+      <span class="ref">9:7 — "보응의 날이 왔다"</span>
+      <p>"<strong>형벌의 날이 이르렀고 보응의 날이 온지라</strong>(<span class="hw">בָּאוּ יְמֵי הַפְּקֻדָּה בָּאוּ יְמֵי הַשִּׁלֻּם</span>) … 선지자가 어리석었고 신에 감동하는 자가 미쳤나니." <span class="c g">G</span>: 예수가 이 "보응의 날"이라는 표현을 <strong>그대로</strong> 취해 예루살렘 심판에 적용한다(눅 21:22, "이는 기록된 모든 것을 이루는 징벌의 날이라"—헬라어가 칠십인역 호세아와 일치). 선지자의 소명은 <strong>파수꾼</strong>이 되어 듣기 싫은 소식을 전하고, 문화를 흉내 내지 말고 대안을 제시하는 것이다 <span class="c g">G</span>.</p>
+    </div>
+    <div class="vs">
+      <span class="ref">9:10 — "광야에서 만난 포도", 그리고 바알브올</span>
+      <p>"옛적에 내가 이스라엘 만나기를 <strong>광야에서 포도를 만남 같이 하였으며</strong> … 그들이 <strong>바알브올</strong>에 이르러 부끄러운 우상에게 몸을 드림으로 그 사랑하는 우상 같이 가증하여졌도다." <span class="c d">D</span>: 광야가 균일하게 이상적이지 않았음을 보이는 <strong>바알브올 배교</strong>(민 25장)의 인유다. 회복의 소망이 과거로의 회귀가 아니라 <strong>은혜로 새로 지어질 미래</strong>인 이유가 여기 있다. 9:17: "내 하나님이 그들을 버리시리니 … 그들이 <strong>여러 나라 가운데에 유리하는 자가 되리라</strong>(<span class="hw">נֹדְדִים בַּגּוֹיִם</span>, 노데딤 바고임)."</p>
+    </div>
+    <div class="caveat">
+      <div class="tt">"유리하는 유대인" 이미지의 오용에 대하여</div>
+      <p><span class="c g">G</span>의 경고: 9:17의 "유리하는 자"라는 표현이 후대 그리스도교에서 <strong>"영원히 떠도는 유대인"</strong>이라는 이미지로 전용되어, 게토·추방·학살·나아가 홀로코스트를 정당화하는 데 오용되었다. 그러나 에브라임은 이미 소멸했고 하나님은 이스라엘 후손의 귀환을 가능케 하셨으므로, 호세아의 이 말에는 그런 성취의 근거가 없다. 오히려 그리스도인은 <strong>유대 민족을 지지할 의무</strong> 아래 있다 <span class="c g">G</span>. 예수는 이스라엘의 유리함을 끝내려 오셨다(눅 1:68–79).</p>
+    </div>
+  </div>
+
+  <!-- ═══ 10장 ═══ -->
+  <div class="chap" id="ch10">
+    <h3><span class="chip-num">10</span> 무성한 포도나무, 그리고 "묵은 땅을 기경하라" (10:1–15)</h3>
+    <p class="lead">한 주제(단 하나의 충성)를 두고 다채로운 이미지가 펼쳐진다 <span class="c k">K</span></p>
+    <div class="vs">
+      <span class="ref">10:1 — 열매 맺을수록 제단을 늘린 포도나무</span>
+      <p>"이스라엘은 <strong>무성한 포도나무</strong>(<span class="hw">גֶּפֶן בּוֹקֵק</span>, 게펜 보케크)라 그 열매가 많을수록 제단을 많게 하며 그 땅이 아름다울수록 주상을 아름답게 하도다." <span class="c hb">Hb</span>: 포도나무 은유는 이사야 5장·시편 80편과 이어지는 계열이다. 번영이 곧 <strong>우상숭배의 증식</strong>으로 이어진 역설이다.</p>
+    </div>
+    <div class="vs">
+      <span class="ref">10:8 — "산들아 우리를 덮으라"</span>
+      <p>"그들이 <strong>산더러 우리를 가리라 작은 산더러 우리 위에 무너지라 하리라</strong>(<span class="hw">כַּסּוּנוּ … נִפְלוּ עָלֵינוּ</span>)." <span class="c g">G</span>: 예수가 십자가를 지고 가시며 이 구절을 취하시고(눅 23:30), 요한은 진노의 큰 날에 온 세상이 이렇게 부르짖는 것을 듣는다(계 6:16). 하나님이 세상의 왕이자 이스라엘의 왕, 권위의 왕이자 공급자 왕이신데, 인간의 권위는 <strong>독초처럼 자란다</strong>(10:4) — 권위의 존재 이유(롬 13)와 그 오용(계 13) 사이의 모순이다 <span class="c g">G</span>.</p>
+    </div>
+    <div class="vs">
+      <span class="ref">10:12 — "의를 심고 … 묵은 땅을 기경하라"</span>
+      <p>"너희가 자기를 위하여 <strong>공의를 심고</strong>(<span class="hw">זִרְעוּ לָכֶם לִצְדָקָה</span>) 인애를 거두라 지금이 <strong>여호와를 찾을 때니</strong>(<span class="hw">עֵת לִדְרוֹשׁ אֶת־יְהוָה</span>, 에트 리드로쉬 엩-야훼) 너희 <strong>묵은 땅을 기경하라</strong>(<span class="hw">נִירוּ לָכֶם נִיר</span>, 니루 라켐 니르)." <span class="c g">G</span>: 8:7("바람을 심고")의 어두운 파종 은유가 여기서 <strong>희망의 파종</strong>으로 뒤집힌다. "묵은 땅을 기경하라"는 <strong>마음을 갈아엎으라</strong>는 부름으로, 찰스 피니의 부흥 신학의 핵심 본문이 되었다. 바울이 (칠십인역의) "의를 비처럼 내리시리라"를 취해 고린도 교회의 "의의 열매"를 더하시리라 선언한다(고후 9:10) <span class="c g">G</span>.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 11장 ═══ -->
+  <div class="chap" id="ch11">
+    <h3><span class="chip-num">11</span> "내가 어찌 너를 놓겠느냐" (11:1–11)</h3>
+    <p class="lead">구약—성경 전체에서 하나님의 심장을 인간의 언어로 여는 가장 담대한 장 <span class="c k">K</span>. 골딩게이는 이 단락을 <strong>장례식의 정조(dirge)</strong>로 읽는다 <span class="c g">G</span></p>
+    <div class="vs">
+      <span class="ref">11:1 — "애굽에서 내 아들을 불렀거늘"</span>
+      <p>"이스라엘이 어렸을 때에 내가 사랑하여 <strong>애굽에서 내 아들을 불러냈거늘</strong>(<span class="hw">וּמִמִּצְרַיִם קָרָאתִי לִבְנִי</span>)." <span class="c k">K</span>: "사랑하여"는 하나님이 쓰실 때 감정적 반응이 아니라 <strong>애정만큼 자유로운 선택</strong>을 함의한다. 마태복음 2:15의 인용은 <strong>결코 자의적이지 않다</strong> — 이스라엘은 하나님의 "장자"(출 4:22)로 불렸고, 위협·구출·귀환의 패턴이, 이스라엘이 부름받은 모든 것을 요약한 그리스도에게서 본질에서 재연된다 <span class="c k">K</span>. <span class="c d">D</span>: 신명기 32장과 공유하는 <strong>이스라엘=하나님의 자녀</strong> 근원 은유의 한 매듭이다.</p>
+    </div>
+    <div class="vs">
+      <span class="ref">11:2–4 — 걸음마를 가르치신 아버지</span>
+      <p>"내가 에브라임에게 <strong>걷는 것을 가르치고</strong> 내 팔로 안았음에도 … 내가 <strong>사람의 줄 곧 사랑의 줄로</strong>(<span class="hw">בְּחַבְלֵי אָדָם בַּעֲבֹתוֹת אַהֲבָה</span>, 베하블레 아담 바아보토트 아하바) 그들을 이끌고." <span class="c k">K</span>: 걸음마를 떼는 아이를 부축하고 넘어지면 안아 주는 장면이나, 에브라임은 이제 <strong>냉담한 사춘기 소년</strong>처럼 이 관계에 무엇을 빚졌는지 잊었다. "부를수록 더욱 멀리 갔다"(11:2)는 4:7; 10:1의 "더욱…더욱" 계열이다 <span class="c k">K</span>.</p>
+    </div>
+    <div class="vs">
+      <span class="ref">11:8–9 — "어찌 너를 놓겠느냐 … 나는 하나님이요 사람이 아니라"</span>
+      <p>"에브라임이여 <strong>내가 어찌 너를 놓겠느냐</strong>(<span class="hw">אֵיךְ אֶתֶּנְךָ</span>, 에크 에텐카) … 어찌 너를 <strong>아드마</strong> 같이 놓겠으며 어찌 너를 <strong>스보임</strong> 같이 두겠느냐 내 마음이 내 속에서 돌이키어 나의 <strong>긍휼</strong>(<span class="hw">נִחוּמָי</span>, 니후마이)이 온전히 불붙듯 하도다." <span class="c k">K</span>: 도덕적 인과·심판의 기제가 <strong>순전한 무사(無私)의 사랑</strong>으로 갑자기 중단된다. 아드마·스보임은 소돔·고모라와 함께 멸망한 성읍(신 29:23)으로, <span class="c d">D</span>: 호세아만이 이 두 이름을 심판 인유에 쓴다. <strong>11:9</strong>: "내가 나의 맹렬한 진노를 나타내지 아니하며 … 이는 <strong>내가 하나님이요 사람이 아님이라</strong>(<span class="hw">כִּי אֵל אָנֹכִי וְלֹא־אִישׁ</span>, 키 엘 아노키 벨로-이시) 네 가운데 있는 <strong>거룩한 이</strong>(<span class="hw">קָדוֹשׁ</span>, 카도쉬)니라." <span class="c hb">Hb</span>: 여기 친밀함은 하나님의 거룩의 <strong>타협이 아니라 표현</strong>이다 — 하나님이 느끼시는 것의 깊이는 그가 누구이신가의 높이와 분리될 수 없다. 목자·재판장·왕은 이런 아픔을 느끼지 못한다; <strong>배우자와 부모만</strong>이 안다 <span class="c hb">Hb</span>.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 12장 ═══ -->
+  <div class="chap" id="ch12">
+    <h3><span class="chip-num">12</span> 야곱을 돌아보라 (11:12–12:14)</h3>
+    <p class="lead">조상의 이야기는 본받을 예 이상이다 — 우리 자신을 비추는 거울이다 <span class="c g">G</span></p>
+    <p>"야곱은 태에서 그의 형의 <strong>발꿈치를 잡았고</strong>(<span class="hw">עָקַב</span>, 아카브) … 하나님과 겨루되 천사와 겨루어 이기고 <strong>울며 그에게 간구하였으며</strong>(<span class="hw">בָּכָה וַיִּתְחַנֶּן־לוֹ</span>, 바카 와이트하넨-로)"(12:3–4). <span class="c d">D</span>: 야곱 전승(벧엘)은 호세아가 창세기를 <strong>유형론적</strong>으로 쓰는 대표 사례이며, 이름의 언어유희(<span class="hw">עקב</span> 야아콥/<span class="hw">שׂרה</span> 사라)가 조상의 이름값과 후손의 실상을 맞세운다. <span class="c g">G</span>: 야곱은 <strong>이스라엘 됨의 모호성</strong>을 구현한다 — 우리는 형제와 하나님 위에 자기를 주장하려 하고, 하나님은 우리가 자기를 이기게 하시며, 그러나 우리는 울며 은혜를 구하고, <strong>하나님을 통해 하나님께 돌아온다</strong>. "네 하나님께로 돌아와서 <strong>인애와 정의를 지키며</strong>(<span class="hw">חֶסֶד וּמִשְׁפָּט שְׁמֹר</span>) 항상 네 하나님을 바랄지니라"(12:6)가 참 회개의 정식이다 <span class="c k">K</span>. "선지자로 이스라엘을 애굽에서 인도하여 내셨고"(12:13)의 선지자는 거의 확실히 <strong>모세</strong>로, 호세아가 자기 사역을 모세의 계보에 둔다 <span class="c d">D</span>.</p>
+  </div>
+
+  <!-- ═══ 13장 ═══ -->
+  <div class="chap" id="ch13">
+    <h3><span class="chip-num">13</span> 한 왕국의 해체 (13:1–16 [13:1–14:1])</h3>
+    <p class="lead">심판 예언의 절정 — 그러나 그 한복판에 부활의 약속이 터진다 <span class="c k">K</span></p>
+    <div class="vs">
+      <span class="ref">13:1–2 — "바알로 범죄하여 죽었고"</span>
+      <p>"에브라임이 말을 하면 <strong>사람이 떨었도다</strong>(<span class="hw">רְתֵת</span>, 레테트, 전율) … 그가 바알로 말미암아 범죄하여 <strong>죽었거늘</strong>(<span class="hw">וַיָּמֹת</span>, 와야모트)." <span class="c kd">KD</span>: 한때 지파 중에 위엄을 떨치던 에브라임이 <strong>바알 숭배로 죽은 나라</strong>가 되었다("죽었다"는 왕국이 멸망에 넘겨졌다는 뜻, 암 2:2). "사람이 송아지에게 <strong>입 맞추리로다</strong>"(13:2)는 제의의 공허함에 대한 조롱이다 <span class="c hb">Hb</span>. "내가 애굽 땅에서부터 네 하나님 여호와가 되었나니 <strong>나 외에 다른 구원자가 없느니라</strong>"(13:4)가 배타적 주권 선언이다 <span class="c d">D</span>.</p>
+    </div>
+    <div class="vs">
+      <span class="ref">13:12–13 — 봉해진 죄, 산문(産門)에 서지 못하는 태아</span>
+      <p>"에브라임의 <strong>불의가 봉해졌고</strong>(<span class="hw">צָרוּר</span>, 차루르) 그 죄가 저장되었나니 … 그는 지혜 없는 자식이로다 해산할 때가 되어도 <strong>그 産門에 이르지 못함이니라</strong>(<span class="hw">מִשְׁבַּר בָּנִים</span>, 미쉬바르 바님)." <span class="c kd">KD</span>: <span class="hw">צָרוּר</span>(차루르)는 잃지 않으려 <strong>주머니에 꼭 싸 둔 것</strong>(삼상 25:29의 "생명 싸개")—죄가 형벌을 위해 보관됨을 뜻한다. 산고에 때맞춰 태(胎)의 문에 나오지 못하는 태아처럼, 에브라임은 심판의 진통 속에서도 <strong>새로 태어나기(회심)를 미룬다</strong> <span class="c kd">KD</span>.</p>
+    </div>
+    <div class="caveat">
+      <div class="tt">13:14 — 최대 번역 쟁점: 약속인가 위협인가</div>
+      <p>"내가 그들을 <strong>스올의 권세에서 속량하며</strong>(<span class="hw">אֶפְדֵּם</span>, 에프뎀) 사망에서 <strong>구속하리니</strong>(<span class="hw">אֶגְאָלֵם</span>, 에그알렘) <strong>사망아 네 재앙이 어디 있느냐</strong>(<span class="hw">אֱהִי דְבָרֶיךָ מָוֶת</span>) 스올아 네 멸망이 어디 있느냐 뉘우침(<span class="hw">נֹחַם</span>, 노함)이 내 눈앞에서 숨으리라."</p>
+      <p><strong>약속(부활)으로 읽는 계열.</strong> <span class="c kd">KD</span>가 가장 단호하다 — 이 절에는 <strong>의문·조건의 첨사가 없고</strong> 평서문이며, 뒤따르는 물음("사망아 네 재앙이 어디 있느냐")이 사망·스올의 <strong>정복을 명백히 확언</strong>한다. "네 재앙"(<span class="hw">דְּבָרֶיךָ</span>, 데바레카)은 <span class="hw">דֶּבֶר</span>(데베르, 역병)의 강세 복수이며(시 91:6의 <span class="hw">קֶטֶב</span> 케테브와 짝), 테오도레투스의 말대로 "사망을 향한 <strong>승전가</strong>를 명하시는" 대목이다. "노함(뉘우침)이 숨으리라"는 하나님의 구원 계획이 <strong>돌이킬 수 없이 성취됨</strong>을 뜻한다(시 89:36; 110:4). 바울이 이사야 25:8과 결합해 고린도전서 15:55에 인용한 것이 정당하다 <span class="c kd">KD</span>. <span class="c k">K</span>도 같은 편으로, 이 책의 서명인 <strong>급전</strong>(11:8; 1:9–10)이 여기서도 작동한다고 본다.</p>
+      <p><strong>위협으로 읽는 계열.</strong> <span class="c s">S</span>와 <span class="c d">D</span>(및 다수 현대 학자)는 MT를 <strong>수사의문문(위협)</strong>으로 읽는다 — "내가 스올에서 속량하랴?"(아니!), "네 재앙이 어디 있느냐"는 사망을 향한 <strong>소환</strong>(언약 저주의 개시)이다 <span class="c s">S</span>. <span class="c d">D</span>의 정리: <strong>히브리어는 물음(위협), 칠십인역은 평서문(약속)</strong>으로 옮겼고 바울은 LXX를 따랐다 — 곧 원래 문맥에선 심판이나 LXX·바울에게서 <strong>부활 소망으로 재해석된</strong> 본문이다 <span class="c d">D</span>. <span class="c g">G</span>: 호세아와 바울은 하나님·죽음·생명에 대해 <strong>같은 것</strong>을 말하되(칼뱅: 사도는 때로 한 단어만 인유한다), 바울은 그 성취가 <strong>그리스도를 통함</strong>을 안다는 차이가 있다 <span class="c g">G</span>. <span class="c m">M</span>: 호세아 전편의 <strong>부활 주제</strong>가 그리스도의 신원(伸冤)으로 이어진다("더 깊은 마법", C. S. 루이스).</p>
+    </div>
+  </div>
+
+  <!-- ═══ 14장 ═══ -->
+  <div class="chap" id="ch14">
+    <h3><span class="chip-num">14</span> 집으로 가는 길 (14:1–9 [2–10])</h3>
+    <p class="lead">앞선 격동 뒤, 이 아홉 절은 고요하다 — 돌아오는 길의 이정표들 <span class="c k">K</span></p>
+    <div class="vs">
+      <span class="ref">14:1–3 — 돌아오라, 말씀을 가지고, 입술의 열매를</span>
+      <p>"이스라엘아 네 하나님 여호와께로 <strong>돌아오라</strong>(<span class="hw">שׁוּבָה יִשְׂרָאֵל</span>, 슈바 이스라엘) … 너희는 <strong>말씀을 가지고</strong>(<span class="hw">קְחוּ עִמָּכֶם דְּבָרִים</span>) 여호와께로 돌아와서 … 우리가 <strong>수송아지를 대신하여 입술의 열매를</strong>(<span class="hw">וּנְשַׁלְּמָה פָרִים שְׂפָתֵינוּ</span>) 주께 드리리이다"(14:2). <span class="c k">K</span>: 회복의 열쇠는 제물이 아니라 <strong>인격적 만남</strong>이다(5:6과 대조). "입술의 열매"(<span class="hw">פְּרִי שְׂפָתֵינוּ</span>)는 헬라어·시리아어 역본 독법이며 <strong>히브리서 13:15가 이대로 인용</strong>한다. "앗수르가 우리를 구원하지 못하겠고 우리가 말을 타지 아니하며 … 다시는 우리 신이라 하지 아니하오리니"(14:3)는 <strong>정치·군사·제의</strong> 세 겹의 거짓을 버리는 참 회개의 정식이다 <span class="c m">M</span>. 마지막 "고아가 주로 말미암아 긍휼을 얻음이니이다"는 로루하마로 시작한 책을 소망으로 되짚는다 <span class="c g">G</span>.</p>
+    </div>
+    <div class="vs">
+      <span class="ref">14:4–7 — "내가 그들의 반역을 고치고 … 이슬 같으리라"</span>
+      <p>"내가 그들의 <strong>반역을 고치고</strong>(<span class="hw">אֶרְפָּא מְשׁוּבָתָם</span>, 에르파 메슈바탐) <strong>기쁘게 그들을 사랑하리니</strong>(<span class="hw">אֹהֲבֵם נְדָבָה</span>, 오하벰 네다바) … 내가 이스라엘에게 <strong>이슬</strong>과 같으리니 그가 <strong>백합화 같이</strong> 피겠고 <strong>레바논 백향목 같이</strong> 뿌리가 박힐 것이라." <span class="c g">G</span>: "치유"는 넓은 개념이다 — 우리는 용서가 필요한 <strong>죄인</strong>이자 치유가 필요한 <strong>상한 자</strong>이며, "네 반역을 고치리라"는 그 둘의 얽힘을 드러낸다. "치유의 길은 값없는 용서"다(칼뱅) <span class="c g">G</span>. <span class="c hb">Hb</span>: 이 사랑 노래(14:5–7)는 아가서와 여러 유사점을 지닌 <strong>구원 선언의 봉인</strong>이다.</p>
+    </div>
+    <div class="note">
+      <div class="tt">14:9 — 지혜의 에필로그</div>
+      <p>"<strong>누가 지혜가 있어</strong>(<span class="hw">מִי חָכָם</span>, 미 하캄) 이런 일을 깨달으며 누가 총명이 있어 이런 일을 알겠느냐 여호와의 도는 정직하니 의인은 그 길로 <strong>다니려니와</strong> 죄인은 그 길에 <strong>걸려 넘어지리라</strong>(<span class="hw">יִכָּשְׁלוּ</span>, 이카쉴루)." <span class="c k">K</span>: "누구든지(<span class="hw">מִי</span>)"가 <strong>독자 자신</strong>을 같은 만남 앞에 세운다 — 예언은 결코 과거로 안전히 물러나지 않는다. 하나님의 도의 정직함이 거룩과 사랑 양면에서 우리 위에 높이 있어, 돌이키는 자는 하나님이 <strong>도중보다 더 나아와 맞으심</strong>을 발견한다 <span class="c k">K</span>. <span class="c hb">Hb</span>는 이 절의 잠언적 색채를 인정하되 호세아의 어법으로도 설명 가능하다고 본다.</p>
+    </div>
+  </div>
+
+  <div class="back"><a href="#top">↑ 처음으로</a></div>
+</section>
+
+<hr class="furrow">
+
+<!-- ══════════════ Ⅲ부 · 설교자를 위한 신학적 메시지 ══════════════ -->
+<section class="part" id="part-preacher">
+  <div class="part-head">
+    <div class="heb">שׁוּבוּ אֵלַי</div>
+    <div class="eyebrow">PART Ⅲ</div>
+    <h2>설교자를 위한 신학적 메시지</h2>
+    <div class="gloss">슈부 엘라이, "내게로 돌아오라" (호 14:1 계열) — 본문 흐름을 따라, 주석에서 길어 온 강단의 메시지</div>
+  </div>
+
+  <div class="caveat">
+    <div class="tt">이 부의 성격</div>
+    <p>Ⅱ부가 본문의 "무엇을 뜻하는가"라면, 이 부는 "그래서 무엇을 선포할 것인가"이다. 주석들이 실제로 열어 둔 <strong>강단의 메시지</strong>—특히 골딩게이(각 단락 끝의 <em>Theological Reflection</em>), 키드너(BST의 강해적 통찰), 허버드(목회적 적용), 문·디어먼(신학적 성찰)—을 본문 순서대로 모았다. 알레고리가 아니라 <strong>본문 자체의 어휘·구조·신학이 신약과 강단에서 만나는 지점</strong>을 따른다. 각 메시지 끝에 설교 착안점을 덧붙였다.</p>
+  </div>
+
+  <!-- 1-3장 -->
+  <h3>1:2–9 · 이름이 된 심판 — 그러나 마지막 말은 아니다</h3>
+  <p>세 아이의 이름(이스르엘·로루하마·로암미)은 <strong>심판의 사다리</strong>를 오른다. 그러나 <span class="c k">K</span>가 강조하듯, 이 어두운 이름들은 우연이 아니라 <strong>되뒤집히기 위해</strong> 놓였다 — 2:22–23에서 이스르엘("하나님이 심으신다")이 본래의 밝은 뜻으로, 1:10–2:1에서 "로(<span class="hw">לֹא</span>, 아니다)"가 하나씩 떨어져 나간다. 심판의 진실함과 은혜의 담대함이 <strong>한 하나님</strong> 안에 있다.</p>
+  <div class="note">
+    <div class="tt">강단 착안점</div>
+    <p>부정어 "로"를 떼어 내는 것이 복음이다. 로암미→암미, 로루하마→루하마의 문법 하나가 <strong>이방인까지 "내 백성"으로 부르시는 은혜</strong>(롬 9:25–26; 벧전 2:10)로 흘러든다 <span class="c m">M</span>. 심판 신탁을 설교할 때조차, 하나님의 목적은 파멸이 아니라 <strong>돌이킴</strong>임을 놓치지 말 것.</p>
+  </div>
+
+  <h3>1:10–2:23 · 값을 치르시는 하나님 — 그러나 응답을 강요치 않으신다</h3>
+  <p><span class="c g">G</span>의 성찰: 하나님은 관계를 회복하려 <strong>친히 값을 치르신다</strong>. 그러나 관계가 관계이려면 응답이 상호적이어야 한다 — <strong>전능하신 하나님조차 응답을 강제하지 못하시되, 배우자로서 그것을 요구하실 수는 있다</strong>. 호세아서에서 하나님은 <strong>"좋은 경찰이자 나쁜 경찰"</strong>이다. 신이 하나뿐이므로 역할을 나눌 수 없고, 그래서 한 분이 준엄하게 말씀하고 준엄하게 행하시며, 자애롭게 말씀하고 자애롭게 행하신다 <span class="c g">G</span>. 2:14–15의 광야 구애는 탕자의 비유(눅 15)처럼, 굶주림 속에서 <strong>정신을 차려 돌아오는</strong> 그림이다.</p>
+  <div class="gold-box">
+    <div class="tt">"긍휼에는 이유가 필요 없다"</div>
+    <p><span class="c hb">Hb</span>의 관찰: 심판 선언에는 언제나 <strong>고발의 형태로 이유가 주어지나</strong>, 구원의 단락에는 하나님이 왜 용서하고 기다리시는지 <strong>설명이 없다</strong>. "하나님의 심판은 이유를 필요로 하고, 그의 긍휼은 그렇지 않다." 2:19–20의 약혼 서약("공의와 정의와 인애와 긍휼과 진실함으로")은 자격의 결과가 아니라 <strong>하나님의 자유</strong>에서 온다.</p>
+  </div>
+
+  <h3>3:1–5 · 복음은 선포될 뿐 아니라 몸으로 구현된다</h3>
+  <p><span class="c g">G</span>의 통찰: <strong>복음의 구현이 복음의 선포 못지않게 중요할 수 있다</strong>. 호세아가 창녀 같은 여인을 사랑하라는 명령에 순종해 <strong>수치를 껴안을 때</strong>, 그는 창녀 같은 백성과 자신을 엮으심으로 수치를 지시는 하나님을 몸으로 그려 낸다. 그것은 하나님을 <strong>어리석어 보이게 만든다</strong> — 그러나 그분은 에브라임을 구원하려 그 경험을 감수하신다 <span class="c g">G</span>. 이것이 값비싼 은혜의 구약적 초상이다.</p>
+  <div class="note">
+    <div class="tt">강단 착안점</div>
+    <p>3:1의 문법을 붙들라 — 하나님의 사랑을 재는 잣대는 우리의 사랑스러움이 아니라 <strong>"여호와께서 사랑하시듯"</strong>(<span class="hw">כְּאַהֲבַת יְהוָה</span>)이다 <span class="c k">K</span>. 3:2의 초라한 몸값이 오히려 그 사랑의 치욕적 무게를 드러낸다. 본회퍼: 은혜가 값비싼 것은 무엇보다 <strong>하나님께 값비쌌기 때문이며, 하나님 아들의 생명을 치르게 했기 때문</strong>이다 <span class="c m">M</span>.</p>
+  </div>
+
+  <!-- 4-5장 -->
+  <h3>4:1–6 · 지식 없이 망하는 백성 — 가르치는 자의 사명</h3>
+  <p>세상에 대한 하나님의 기대는 그 백성에 대한 기대와 다르지 않다(롬 1–3) — <strong>진실(에메트)·인애(헤세드)·하나님을 아는 지식(다아트)</strong> <span class="c g">G</span>. 에메트는 <strong>말을 지킴</strong>, 헤세드는 <strong>권리 없는 자에게도 지키는 신실</strong>, 다아트는 <strong>하나님을 하나님으로 인정함=복종</strong>이다. 이 셋이 사라진 땅에서 불의가 판친다. 4:6("내 백성이 지식이 없으므로 망하는도다")은 <strong>가르치는 자</strong>를 겨눈다.</p>
+  <div class="note">
+    <div class="tt">강단 착안점</div>
+    <p>제사장이 맡았던 <strong>말씀 전수의 사명</strong>을 오늘의 교회가 맡았다. 예수의 "맹인이 맹인을 인도하면 둘이 다 구덩이에 빠진다"(마 15:14)가 파산한 지도력을 겨눈다 <span class="c hb">Hb</span>. 4:2가 십계명의 어두운 그림자임을 짚으면, <strong>율법의 거울</strong>로 회중을 세울 수 있다.</p>
+  </div>
+
+  <h3>5:4–15 · 돌아오지 못하는 신비, 그리고 물러나시는 하나님</h3>
+  <p><span class="c g">G</span>의 성찰: 하나님의 백성이 "<strong>음란한 영</strong>"(4:12; 5:4)에 사로잡혀 돌아오지 못하는 데에는 신비가 있다. 정결함은 얼마든지 가능한데, 문제는 <strong>그것을 구하지 않는</strong> 데 있다. 히브리서 6:4–6과 10:26–39의 배후에 이 역설이 있다. 그리고 하나님의 대응은 물러나심이다 — "내가 내 곳으로 돌아가리라"(5:15). <span class="c k">K</span>: 하나님의 <strong>물러나심</strong>이야말로 "모든 돌이킴을 낳는 돌이킴"이다.</p>
+
+  <!-- 6-7장 -->
+  <h3>6:1–6 · "여호와를 알자" — 참 회개와 값싼 확신 사이</h3>
+  <p>6:1–3의 회개 노래는 강단에서 조심스레 다뤄야 한다. <span class="c k">K</span>는 이를 <strong>하나님이 이끌어 내실 참 회심의 모델</strong>로 읽되(6:6이 이와 충돌하지 않으므로), 흔한 다수설은 이를 <strong>안이한 추정(값싼 자신감)</strong>으로 본다. 두 독법 모두 설교할 가치가 있다 — 참된 돌이킴은 "힘써 여호와를 아는" 것이지, 하나님이 자동으로 낫게 하시리라는 <strong>전제된 낙관</strong>이 아니다.</p>
+  <div class="gold-box">
+    <div class="tt">6:6 — 관계가 의식(儀式)을 앞선다</div>
+    <p>"나는 인애를 원하고 제사를 원하지 아니하며 하나님을 아는 것을 번제보다 더 원하노라." 예수가 이 절을 <strong>두 번</strong> 인용하신다 — 세리와 함께 잡수시며(마 9:13), 안식일 논쟁에서(마 12:7). 호세아의 제사장이 맡았던 율법주의의 자리를 바리새인이 이어받은 셈이다 <span class="c hb">Hb</span>. <strong>강단 착안점</strong>: 히브리어 "민(~보다)"은 제사의 폐기가 아니라 <strong>우선순위</strong>다. 예배가 관계를 대신할 때 그것은 우상이 된다.</p>
+  </div>
+
+  <h3>6:4–7:16 · 예배는 위험한 일이다</h3>
+  <p><span class="c g">G</span>의 가장 통렬한 성찰: <strong>예배는 위험한 일이다</strong>. 우리의 말과 예물과 물음을 들고 나아갈 때 우리는 받아 주심과 공감을 기대하지만, 때로 <strong>"콧방귀 뀌는" 응답</strong>을 받는다(사 42:18–25; 마 15:21–28). 여기서 하나님은 <strong>어려운 질문</strong>을 던지시는 분으로 나타난다 — "내가 너를 어떻게 하랴"(6:4). 형벌조차 그분을 어디로도 데려가지 못하고(창 8:21), 은혜로 응답해도 그것이 도리어 죄를 드러낼 뿐일 수 있다. 그러나 <strong>하나님의 형벌은 궁극이 아니라 차선(penultimate)이며, 징계다</strong>(요 15:1–2). 그리고 회복과 치유는 <strong>먼저</strong> 오되, 응답을 요구한다 — "은혜를 더하게 하려고 죄에 거하겠느냐"(롬 6:1)는 은혜의 목적을 전혀 이해하지 못한 물음이다 <span class="c g">G</span>.</p>
+  <div class="note">
+    <div class="tt">강단 착안점 — "길들여지지 않은 사자"</div>
+    <p>사랑의 예언자 호세아에게서 <strong>하나님 본성의 두려움</strong>이 선명하게 드러난다 — 그분은 사자요 삼키는 질병(5:12–14)이시다. C. S. 루이스의 애독되는 구절: "아슬란은 사자다 — <strong>길들여진 사자가 아니다.</strong>" 하나님의 진노에서 불을, 사랑에서 온기를 빼지 말 것 <span class="c g">G</span>.</p>
+  </div>
+
+  <!-- 8-10장 -->
+  <h3>8:1–14 · 언약 — 은혜가 먼저, 그다음 조건</h3>
+  <p><span class="c g">G</span>의 성찰: 하나님과 그 백성의 관계는 <strong>언약적</strong>이다 — 은혜가 먼저 언약을 세우고(은혜였으므로 <strong>무조건</strong>), 그 위에서 하나님은 백성이 그 가르침대로 살기를 기대하신다. 어느 세대가 계속 "그의 백성"이려면 조건이 놓인다. "옳은 것이 옳은 이유는 <strong>하나님이 그렇다 하시기 때문이며, 동시에 실재의 객관적 무엇에 부합하기 때문</strong>"이다. 따라서 반역은 관계에 대한 배신(사 30:1)이자 계명 위반(요일 3:4) 양면이다 <span class="c g">G</span>.</p>
+  <div class="note">
+    <div class="tt">강단 착안점 — 뿌린 대로 거둠</div>
+    <p>"바람을 심고 광풍을 거둔다"(8:7)는 <strong>도덕적 실재의 결</strong>이다(갈 6:7). 더 나아가 때로 어리석은 일을 하면 <strong>열 배 더한 것</strong>이 되돌아온다("바람"을 심었는데 "광풍"). 8:4("내가 세우지 아니한 왕")로 <strong>하나님 없이 세운 것들의 자멸</strong>을 설교할 수 있다 <span class="c g">G</span>.</p>
+  </div>
+
+  <h3>9:1–17 · 축하를 삼갈 때 — 파수꾼의 소명</h3>
+  <p><span class="c g">G</span>: <strong>축하할 때가 있고 삼갈 때가 있다</strong>. 하나님을 버렸다면 잔치조차 삼가야 한다(출 33:4). 칼뱅의 말대로 "우리와 하나님을 경멸하는 자들 사이의 <strong>모든 차이가 사라지는 것</strong>보다 더 참담한 일은 없다." 이 대목에서 선지자의 직무는 <strong>파수꾼</strong>이 되는 것 — 사람들이 듣기 싫어하는 소식을 전하고, 그들이 <strong>문화를 흉내 낼 뿐 대안을 제시하지 못한다</strong>고 말하는 것이다. 선지자와 사도가 어리석은 자로 취급받지 <strong>않는다면</strong>, 자기가 정말 하나님의 메시지를 전하고 있는지 물어야 한다(고전 4:12) <span class="c g">G</span>.</p>
+  <div class="note">
+    <div class="tt">강단 착안점 — 보응의 날, 그리고 반유대주의 경계</div>
+    <p>"보응의 날"(9:7)을 예수가 그대로 취해 예루살렘 심판에 적용하신다(눅 21:22). 그러나 9:17의 "유리하는 자"를 <strong>"영원히 떠도는 유대인"</strong>으로 오독한 역사가 게토·박해·홀로코스트를 낳았음을 반드시 경계할 것 — 본문에는 그런 성취의 근거가 없으며, 그리스도인은 오히려 <strong>유대 민족을 지지할 의무</strong> 아래 있다 <span class="c g">G</span>.</p>
+  </div>
+
+  <h3>10:1–15 · 왕이신 하나님, 그리고 "묵은 땅을 기경하라"</h3>
+  <p><span class="c g">G</span>: 하나님의 왕 되심에는 두 축, 각 축에 두 면이 있다 — 그분은 <strong>세상의 왕이자 이스라엘의 왕</strong>이며, <strong>권위의 왕이자 공급자 왕</strong>이시다. 반면 인간의 권위는 "독초처럼 무성하다"(10:4). 여기에 <strong>권위의 존재 이유(롬 13:1–7)와 그 오용(계 13) 사이의 모순</strong>이 있다. 하나님의 백성과 그 지도자들의 도전은, 실패한 모범을 따르려는 유혹에 저항하고, 권위가 그 존재 이유대로 다스리도록 촉구하며, "인내와 믿음"(계 13:10)을 지키는 것이다 <span class="c g">G</span>. 십자가를 지고 가시는 예수가 10:8을 취하신다(눅 23:30; 계 6:16).</p>
+  <div class="gold-box">
+    <div class="tt">10:12 — 마음을 갈아엎으라</div>
+    <p>"묵은 땅을 기경하라"(<span class="hw">נִירוּ לָכֶם נִיר</span>)는 <strong>마음을 갈아엎으라</strong>는 부름이다 — 찰스 피니의 부흥 신학의 핵심 본문으로, 배은망덕·하나님 사랑의 결핍·말씀 소홀 등을 찾아내는 <strong>자기 성찰</strong>을 요구한다. 농부가 묵은 밭을 갈고 뿌리면 열매가 확실하듯. 바울이 "의를 비처럼"을 취해 "너희 의의 열매를 더하게 하시리라"(고후 9:10) 선언한다 <span class="c g">G</span>. 8:7의 어두운 파종이 여기서 <strong>희망의 파종</strong>으로 뒤집힌다.</p>
+  </div>
+
+  <!-- 11장 -->
+  <h3>11:1–11 · 장례식의 정조, 그리고 상처 입은 위엄</h3>
+  <p><span class="c g">G</span>는 이 장을 <strong>장례식의 정조(dirge)</strong>로 읽는다 — 역사의 회고, 분노를 압도하는 아픔, 절망의 분위기, 애곡하는 이(여기서는 하나님)의 속에서 터지는 쓰라린 외침. 부모가 아들의 죽음을 곡하듯 하나님이 <strong>네 번의 "어찌"</strong>로 부르짖으시고, 시의 끝까지 "돌아오라/회개하라"는 말이 없다 <span class="c g">G</span>. 마태복음 2:15의 인용은 자의적이지 않다 — 이스라엘은 하나님의 "장자"(출 4:22)였고, 위협·구출·귀환의 패턴이 그 백성의 소명을 요약한 그리스도에게서 재연된다 <span class="c k">K</span>.</p>
+  <div class="gold-box">
+    <div class="tt">"나는 하나님이요 사람이 아니라" (11:9)</div>
+    <p>여기 하나님의 친밀함은 그분 <strong>거룩의 타협이 아니라 표현</strong>이다. 하나님이 느끼시는 것의 <strong>깊이</strong>는 그가 누구이신가의 <strong>높이</strong>와 분리될 수 없다. 목자·재판장·왕은 이런 아픔을 알지 못한다 — <strong>배우자와 부모만</strong>이 안다 <span class="c hb">Hb</span>. 도덕적 인과의 기제가 <strong>순전한 무사의 사랑</strong>으로 중단되는 이 지점(11:8)이 구약 신학의 정점이다.</p>
+  </div>
+
+  <!-- 12-13장 -->
+  <h3>12:1–14 · 조상은 본보기가 아니라 거울이다</h3>
+  <p><span class="c g">G</span>: 조상들의 이야기(야곱·라헬·레아; 모세·아론·미리암)는 <strong>본받거나 피할 예</strong>이기 이전에, 우리 자신을 비추어 우리 행동의 의미를 깨닫게 하는 <strong>거울</strong>이다. 야곱은 <strong>이스라엘 됨의 모호성</strong>을 특히 잘 구현한다 — 우리는 형제와 하나님 위에 자기를 주장하려 하고, 하나님은 우리가 자기를 이기게 하시며(창 32장), 그러나 우리는 혼란 속에 울며 은혜를 구하고, <strong>하나님을 통해 하나님께 돌아온다</strong>. "그가 네게 약속하고 지지하시는 그 약속과 지지에 너는 의지하여 그에게 돌아가라"(12:6) <span class="c g">G</span>.</p>
+  <div class="note">
+    <div class="tt">강단 착안점</div>
+    <p>성경의 이야기를 읽을 때 우리는 <strong>"하나님이 우리와 말씀하신다"</strong>는 기대로 나아간다. 하나님은 단지 야곱과 말씀하신 것이 아니라, 그렇게 하심으로 <strong>우리와도</strong> 말씀하신다 — 히브리서가 구약을 인용하며 성령이 "말씀하신다"(현재형, 히 3:7)고 하는 이유다 <span class="c g">G</span>.</p>
+  </div>
+
+  <h3>13:1–16 · 사망을 향한 승전가</h3>
+  <p>심판의 절정(13:1–13) 한복판에서 <strong>부활의 약속</strong>이 터진다(13:14). 바울이 이를 우리의 궁극적 부활과 연결해 인용한다 — "사망아 너의 승리가 어디 있느냐"(고전 15:55). 칼뱅의 신중한 해석: "사도들이 늘 문맥 전체가 들어맞는 구절을 끌어오는 것은 아니며, 때로 <strong>한 단어에만 인유</strong>하기도 한다." 호세아와 바울은 하나님·죽음·생명에 대해 <strong>같은 것</strong>을 말한다 — 다만 바울은 그 생명의 약속이 <strong>그리스도를 통해 성취됨</strong>을 안다는 차이가 있다 <span class="c g">G</span>.</p>
+  <div class="note">
+    <div class="tt">강단 착안점 — "더 깊은 마법"</div>
+    <p>호세아 전편에 흐르는 <strong>부활(재창조) 주제</strong>(6:2; 13:14; 14:5–7의 이슬·소생)가 그리스도의 신원(伸冤)으로 이어진다 <span class="c m">M</span>. 죽음이 삼킨 것을 되찾으시는 하나님 — C. S. 루이스의 "<strong>더 깊은 마법</strong>"이 배후에 있다. 심판을 설교하되, 심판이 <strong>마지막 말이 아님</strong>을 이 절이 증언한다.</p>
+  </div>
+
+  <!-- 14장 -->
+  <h3>14:1–9 · 집으로 — 말씀을 가지고, 고아로 나아가라</h3>
+  <p><span class="c g">G</span>의 마무리 성찰: 돌아옴의 열쇠는 <strong>"말"</strong>이다(14:2). 관계가 온전할 때 제사는 합당하나, 관계가 어긋났을 때 제사는 설 자리가 없다(시 51:16–19) — "제사의 본질이 죄를 처리하는 것"이라는 통념과 반대다. 그때 우리가 드릴 것은 <strong>"입술의 열매"</strong>(칠십인역; 히 13:15)뿐이다. 우리는 <strong>고아로</strong> 나아가되, 고아를 긍휼히 여기시는 분께 나아간다. 우리 소망의 근거는 하나님이 <strong>우리의 죄책을 (우리 책임임에도) 스스로 담당하려 하심</strong>이며, "그가 예수를 우리를 위해 죽게 하심이 그 책임 짊어지심을 구현한다 — 우리가 죽는 대신, 그분이 죽으려 하신다" <span class="c g">G</span>.</p>
+  <div class="gold-box">
+    <div class="tt">"치유의 길은 값없는 용서다"</div>
+    <p>"내가 그들의 반역을 고치리라"(14:4). <span class="c g">G</span>: <strong>치유는 들리는 것보다 넓은 개념</strong>이다 — 하나님의 백성은 용서가 필요한 <strong>죄인</strong>이자 치유가 필요한 <strong>상한 자</strong>이며, 이 둘은 서로 얽힌다(죄가 우리를 상하게 하고, 상함이 우리를 죄짓게 한다). 예수가 치유와 용서를 함께 베푸심(막 2:1–12)이 그 얽힘을 인정한다. 용서의 행위 자체가 우리를 <strong>바꾼다</strong> — "<strong>치유의 길은 값없는 용서다</strong>"(칼뱅) <span class="c g">G</span>.</p>
+  </div>
+
+  <!-- 마무리 -->
+  <hr class="furrow">
+  <h3>맺는 말 · 두 예언자, 하나의 부름</h3>
+  <p>조지 아담 스미스의 오래된 대조가 이 책의 강단적 요지를 압축한다 — <strong>"아모스는 '돌이키라, 앞에는 멸망이 있으니'라고 외치고, 호세아는 '돌이키라, 네 뒤에는 하나님이 계시니'라고 외친다."</strong> 호세아의 하나님은 심판하시되 그 심판이 차선(penultimate)이며, 물러나시되 다시 구애하시고, 죽음에 내어 주시되 그 죽음을 삼키신다. 맥콘빌이 이름 붙인 <strong>"불합리한 은혜의 신학"</strong>(theology of illogical grace)이 이 책 전체를 관통한다 — 하나님이 수치를 지시고 명예를 나누심이 그리스도의 십자가에서 완성된다 <span class="c m">M</span>. 그러므로 호세아를 설교하는 자는, 마지막 절이 묻는 물음을 회중에게 그대로 돌려준다: <strong>"누가 지혜가 있어 이런 일을 깨달으랴"</strong>(14:9) — 예언은 결코 과거로 안전히 물러나지 않는다 <span class="c k">K</span>.</p>
+
+  <div class="back"><a href="#top">↑ 처음으로</a></div>
+</section>
+
+<hr class="furrow">
+
+<!-- ══════════════ Ⅳ부 · 신학적 메시지 ══════════════ -->
+<section class="part" id="part3">
+  <div class="part-head">
+    <div class="heb">חֶסֶד</div>
+    <div class="eyebrow">PART Ⅳ</div>
+    <h2>신학적 메시지</h2>
+    <div class="gloss">헤세드, "언약적 사랑" (호 6:6) — 언약·지식·주권·거룩, 그리고 심판과 소망</div>
+  </div>
+
+  <h3>1. 언약과 그 어휘 — 헤세드·다아트·에무나</h3>
+  <p><span class="c hb">Hb</span>가 호세아 관계 신학의 핵심 어휘를 정리한다. 야훼의 이스라엘 통치는 인격적 언어로 규정된다: <strong>언약적 사랑(헤세드, <span class="hw">חֶסֶד</span>)</strong>—당사자를 잇는 유대를 선의로 살아 내는 헌신(2:19; 4:1; 6:4, 6; 10:12; 12:6), <strong>진실(에무나·에메트, <span class="hw">אֱמוּנָה</span>)</strong>—말과 행위의 신뢰성(2:20; 4:1), <strong>긍휼(라함, <span class="hw">רחם</span>)</strong>—어머니의 자궁적 자비(1:6–7; 2:19, 23; 14:3), <strong>하나님을 아는 지식(다아트, <span class="hw">דַּעַת</span>)</strong>—언약이 포괄하는 모든 것에의 친밀·충성·일관(4:1–6; 6:6; 13:4). <span class="c m">M</span>: 호세아는 이스라엘이 <strong>"의무의 관계"</strong>(Hugenberger: "신적 제재 아래 세워진 의무의 관계") 안에 있음을 처음부터 전제한다 — "나는 너희 하나님이 되고 너희는 내 백성이 되리라"는 정형구가 모든 약속과 의무를 담는다.</p>
+
+  <div class="note">
+    <div class="tt">언약은 부과된 은혜다 — 그리고 "영원한 언약"</div>
+    <p><span class="c m">M</span>의 신학적 독법: 언약은 이스라엘에게 <strong>은혜의 사역으로 부과</strong>되었다(할례처럼, 동의·거부의 선택 없이). 이는 죽음을 이기는 생명과 은혜의 부과다. 그러면서도 언약은 <strong>깨질 수 있고(</strong>쌍무적<strong>) 다시 제시된다</strong> — 이것이 오경의 "영원한 언약" 개념이다(Mason). 야훼는 백성의 비인간성을 심판함으로써 언약을 지키시고(Barth), 구속을 재차 제시함으로써 언약에 신실하시다(겔 16:60, "내가 너와 세운 언약을 기억하고 영원한 언약을 세우리라"—기억과 세움은 하나의 일). 호세아에 "영원한 언약"이라는 용어는 없지만 그 동학은 3:1–5에 살아 있다 <span class="c m">M</span>.</p>
+  </div>
+
+  <h3>2. 하나님의 다섯 겹 주권 — 역사·다산·정치·국제·국민생활</h3>
+  <p><span class="c hb">Hb</span>: 야훼의 유일한 주권은 이스라엘 공동생활에 두 파장을 낳는다. ①우상숭배는 절대 금지된다 — 거룩한 이(11:9)이신 야훼의 유일성 때문에 모든 형상은 생명 없는 희화(8:6; 13:2). ②삶의 전 영역이 그의 통치 아래 있다.</p>
+  <ul>
+    <li><strong>역사의 주.</strong> 아모스처럼 권능의 과시가 아니라 <strong>사랑하나 좌절된 관계</strong>로 그려진다 — 농부의 양육(9:10), 부모의 훈육(11:1–4), 보호자(13:4–5), 연인의 구애(2:14–15). 심판은 "애굽으로의 귀환"(9:3; 11:11), 광야로의 회귀(2:5; 12:9)로 <strong>역사의 역전</strong>이다 <span class="c hb">Hb</span>.</li>
+    <li><strong>다산의 주.</strong> 바알이 아니라 야훼가 곡식·부(2:8), 비(6:3), 푸른 초장(14:4–7)의 근원이다. <span class="c hb">Hb</span>: "신화나 마술 없는 다산"이 호세아가 청중에게 이해시키려는 것.</li>
+    <li><strong>국내 정치의 주.</strong> 아모스와 달리 대부분 <strong>왕정을 음모한 제사장</strong>(6:7–7:7)이나 "옷 갈아입듯 왕을 갈아치운" 백성(8:4; 10:3; 13:10–11)을 겨눈다. <span class="c hb">Hb</span>: 다툼은 왕정 제도 자체가 아니라 여로보암 1세의 부패한 제의 후원과 불의한 지도의 실패다.</li>
+    <li><strong>국제관계의 주.</strong> 열국은 <strong>심판의 도구</strong>(침략·유배)이거나 <strong>유혹의 통로</strong>(어리석은 조약, 8:9; 12:1)다. 회복의 조건이 "앗수르가 우리를 구원하지 못하겠고"(14:3)라는 포기다 <span class="c hb">Hb</span>.</li>
+    <li><strong>국민생활의 주.</strong> 뿌리에는 인격적 통치가 있다 — 야훼는 남편·부모, 백성은 배우자·자식. <span class="c hb">Hb</span>: 이 인격 언어는 일차적으로 개인이 아니라 <strong>민족 전체</strong>를 가리킨다.</li>
+  </ul>
+
+  <h3>3. 가정(household)이라는 근원 은유</h3>
+  <p><span class="c d">D</span>의 독자적 기여다. 결혼보다 <strong>가정(patrimonial household)이 일차 제도</strong>이며, 결혼·자녀·땅(재산)이 그 구성부다. 이것이 호세아가 이스라엘·유다를 야훼의 집으로 그리는 근원 은유(source domain)다. 1–3장에서 고멜만이 아니라 <strong>자녀와 땅(1:2)도 이스라엘을 대표</strong>한다. 이스라엘은 "여호와의 집"(1:4; 5:1; 6:10), "여호와의 아들"(11:1), "살아 계신 하나님의 자녀"(1:10)로 불린다. 이 은유는 지도(map)처럼 <strong>기원·여정·목적지</strong>를 설명하며, 출애굽–광야–풍요로운 땅이라는 신학적 모체를 하나로 엮는다 <span class="c d">D</span>. 야훼는 이 집에서 아버지·남편·소유자이나, 이스라엘/사마리아가 본질상 여성이 아니듯 야훼도 성별로 규정되기를 초월한다 <span class="c d">D</span>.</p>
+
+  <h3>4. 심판과 소망 — 다섯 구원 단락</h3>
+  <p><span class="c hb">Hb</span>: 다섯 지점에서 화해가 예고되어(1:10–2:1; 2:14–23; 3:1–5; 11:8–11; 14:1–7) 책의 전체 의도, 곧 <strong>백성의 만성적 방황에도 불구하고 지속되는 야훼의 사랑의 임재</strong>를 전한다. 각 묶음이 고발(리브)로 시작해 소망으로 끝난다.</p>
+  <div class="gold-box">
+    <div class="tt">"하나님의 심판은 이유를 필요로 하고, 그의 긍휼은 그렇지 않다"</div>
+    <p><span class="c hb">Hb</span>의 형식비평적 관찰: 심판 선언에는 <strong>고발의 형태로 이유가 주어지나</strong>, 소망의 단락에는 용서를 베풀고 이스라엘의 귀환을 기다리는 신적 사랑에 대한 <strong>설명이 나오지 않는다</strong>. 간명하게: "God's judgment needs a reason; his compassion does not." 은혜 서사(9:6–31류)가 규정(서약)을 앞서듯, 호세아에서도 회복은 자격의 결과가 아니라 하나님의 자유에서 온다.</p>
+  </div>
+
+  <h3>5. 거룩과 사랑 — "나는 하나님이요 사람이 아니라"</h3>
+  <p><span class="c hb">Hb</span>: 책이 그리는 친밀은 야훼의 거룩의 <strong>타협이 아니라 표현</strong>이다(11:9). 하나님이 느끼시는 것의 깊이는 그가 누구이신가의 높이와 분리될 수 없다 — 신적 항변(divine complaint)의 아픔의 날카로움은 고난받는 분의 위엄에 정비례한다. <span class="c k">K</span>: 이 책은 하나님을 손 놓고 탄식하는 분으로 그리지 않는다 — 여기엔 진노와 심판이 있다. 하나님은 번갈아 <strong>냉담("버려두라", 4:17)·강경("사자 같이", 5:14)·자애("어찌 너를 놓겠느냐", 11:8)</strong>하시며, 복잡한 상황에 대한 복잡한 답이다. <span class="c m">M</span>은 이를 Barth로 정리한다 — 하나님은 인간의 비인간성에 "그것은 거부되었고 이미 거부되었다"는 답 외에 다른 답이 없으시며, 언약을 그 <strong>가차 없는 심판</strong>으로 지키신다. 그러나 심판과 함께 언약의 <strong>재탄생</strong>(3:1–5)도 본다.</p>
+
+  <h3>6. 서사적 신학 — 출애굽·광야·땅</h3>
+  <p><span class="c d">D</span>: 호세아는 신학을 추상적으로 제시하지 않고 <strong>이야기 형태의 에토스</strong>에서 응답한다(occasional document, 바울 서신처럼). 그 모체의 세 시기: ①조상(야곱·벧엘, 12:2–6)—부차적, ②출애굽·광야(근원 은유가 작동), ③땅에서의 삶(호세아 당대). <span class="c m">M</span>: von Rad를 인용해 "호세아의 설교 전체가 구속사에 뿌리박고 있으며, 역사에 논거를 둘 수 있을 때에만 안심하는 듯하다"고 한다. "애굽 땅에서부터 나는 네 하나님 여호와라"(12:9; 13:4), "애굽에서 내 아들을 불렀거늘"(11:1)이 그 <strong>정의적 서사</strong>의 씨앗이다 <span class="c d">D</span>.</p>
+
+  <div class="back"><a href="#top">↑ 처음으로</a></div>
+</section>
+
+<hr class="furrow">
+
+<!-- ══════════════ Ⅴ부 · 상호 참조 ══════════════ -->
+<section class="part" id="part4">
+  <div class="part-head">
+    <div class="eyebrow">PART Ⅴ</div>
+    <h2>상호 참조</h2>
+    <div class="gloss">호세아와 다른 성경(구약·신약)의 접점 — 인용·인유·어휘 반향</div>
+  </div>
+
+  <p>주석들의 공통 판정: <strong>호세아는 오경 전승을 촘촘히 인유하는 책이면서, 동시에 후대 예언자(특히 예레미야)와 신약이 즐겨 되짚는 원천이다.</strong> 이 책은 앞선 성경을 유형론적으로 재사용하고, 뒤의 성경이 이 책을 재사용한다.</p>
+
+  <h3>1. 구약과의 접점 — 상류와 병류</h3>
+  <table>
+    <tr><th style="width:18%">호세아</th><th style="width:24%">참조 본문</th><th>주석의 관찰</th></tr>
+    <tr><td class="head">4:2</td><td>출애굽기 20장(십계명)</td><td>죄 목록("맹세·속임·살인·도둑질·간음")이 <strong>십계명의 어두운 그림자</strong> <span class="c k">K</span>. 4:2a는 십계명에의 명백한 인유 <span class="c d">D</span> <span class="c m">M</span>.</td></tr>
+    <tr><td class="head">1:9; 2:16, 23</td><td>출애굽기 3:14; 6:7</td><td>"로-에흐예"(1:9)가 신명 <span class="hw">אֶהְיֶה</span>(출 3:14)를 뒤집고, "내 백성 아니라"가 언약 정형구(출 6:7)를 부정 <span class="c d">D</span>.</td></tr>
+    <tr><td class="head">1:6; 11:8–9; 14:4</td><td>출애굽기 34:6–7</td><td>로루하마·긍휼·"뉘우침"이 출 34:6–7의 자기 계시("긍휼·용서")를 부정했다가 회복함 <span class="c d">D</span>.</td></tr>
+    <tr><td class="head">전편</td><td>신명기 32장(모세의 노래)</td><td>공유 요소: 이스라엘=하나님의 자녀(신 32:5, 18–20 / 호 11:1; 13:13), "미련한 백성"(신 32:6 / 호 13:13), 광야에서 "찾으심"(신 32:10 / 호 9:10). <strong>공통 전승 모체</strong> 접근이 가장 유력 <span class="c d">D</span>.</td></tr>
+    <tr><td class="head">8:1; 2:18 등</td><td>레위기 26장; 신명기 28장</td><td>독수리·들짐승·유배가 <strong>언약 저주 전승</strong>에 대응. <span class="c s">S</span>는 책 전체를 오경 저주·축복의 적용으로 읽음(저주 27종·축복 10종을 번호로 참조).</td></tr>
+    <tr><td class="head">9:10</td><td>민수기 25장(바알브올)</td><td>광야기 배교의 인유 — 광야가 균일하게 긍정적이지 않았음의 증거 <span class="c d">D</span>.</td></tr>
+    <tr><td class="head">12:2–6</td><td>창세기 25·32장(야곱)</td><td>야곱·벧엘 전승의 <strong>유형론적</strong> 활용, 이름 언어유희(<span class="hw">עקב</span>/<span class="hw">שׂרה</span>) <span class="c d">D</span>.</td></tr>
+    <tr><td class="head">2:15</td><td>여호수아 2·7장</td><td>아골 골짜기(아간, 수 7장)의 반전, 티크바(소망)와 라합의 붉은 줄(수 2장)의 동음 언어유희 <span class="c d">D</span>.</td></tr>
+    <tr><td class="head">3:1; 2:2</td><td>신명기 24:1–4</td><td>이혼 후 재결합 금지가 3장의 (재)취득 문제와 얽힘 — 예레미야 3:1이 같은 논리에 의존 <span class="c d">D</span>.</td></tr>
+    <tr><td class="head">1–3장 결혼 은유</td><td>사 50·54; 렘 2–3; 겔 16·23</td><td>혼인·음행 은유의 예언자적 계보. <span class="c d">D</span>: 겔 16·23의 벌거벗김·결혼 상징이 호세아의 가장 가까운 병행.</td></tr>
+    <tr><td class="head">10:1</td><td>이사야 5:1–7; 시 80</td><td>이스라엘=포도나무 은유의 광범한 계열 — 직접 의존을 강하게 주장하긴 어려움 <span class="c hb">Hb</span>.</td></tr>
+  </table>
+
+  <div class="note">
+    <div class="tt">예레미야 — 호세아의 "영적 아들"</div>
+    <p><span class="c hb">Hb</span>: Martin Buber는 예레미야를 호세아의 "유고(遺稿) 제자"라 불렀다. 언어·이미지·신학 개념에서 예레미야는 호세아의 <strong>언약 해석 사명의 상속자</strong>로 자신을 이해한 듯하다. 공유: 신부·아들 은유(렘 3장), 광야 신혼(렘 2:1–3), 헤세드(렘 2:2), 음행=우상숭배(렘 3:2–3), 지식(렘 2:8; 4:22; 31:34), 돌아옴(<span class="hw">שׁוב</span>, 렘 3장). 두 사람의 삶이 사랑을 위한 고난의 비유가 되었다 — 호세아에게는 결혼하라는 명령, 예레미야에게는 <strong>결혼하지 말라</strong>는 명령(렘 16:1–2) <span class="c hb">Hb</span>. <span class="c d">D</span>: 예레미야의 호세아 수용은 예루살렘 함락(587/586) 이전에 유다에 호세아 모음집이 있었다는 견고한 증거다.</p>
+  </div>
+
+  <p><strong>신명기와의 관계.</strong> <span class="c hb">Hb</span>: 구약학의 가장 까다로운 문제 중 하나다. Wolff류 다수설은 호세아의 제자 집단이 "신명기 운동의 선구자"였다고 본다. 그러나 <strong>신명기적 가르침의 핵심이 북왕국에 보존되어 호세아가 이 자료에서 길었다</strong>는 견해도 성장 중이다 <span class="c hb">Hb</span>. <span class="c m">M</span>은 더 나아간다 — 8세기 작품인 호세아가 토라(신명기 포함)의 실질을 전제·인유·인용하므로, 이는 신명기의 후대 저작설이 <strong>맞춰 설명해야 할 증거</strong>이지 그 반대가 아니다.</p>
+
+  <h3>2. 신약과의 접점 — 직접 인용과 주제 계승</h3>
+  <table>
+    <tr><th style="width:14%">호세아</th><th style="width:22%">신약</th><th>내용과 주석의 관찰</th></tr>
+    <tr><td class="head">11:1</td><td>마태복음 2:15</td><td>"애굽에서 내 아들을 불렀거늘." <span class="c k">K</span>: <strong>결코 자의적이지 않다</strong> — 이스라엘(하나님의 장자, 출 4:22)이 겪은 위협·구출·귀환 패턴이, 이스라엘이 부름받은 모든 것을 요약한 그리스도에게서 재연됨.</td></tr>
+    <tr><td class="head">6:6</td><td>마태복음 9:13; 12:7</td><td>"나는 인애를 원하고 제사를 원하지 아니하며." 칠십인역에서 <strong>축자 인용</strong>되어 바리새인의 율법주의 고발이 됨. 긍휼·지식의 우선성이 마태 신학의 지배 주제 <span class="c hb">Hb</span>.</td></tr>
+    <tr><td class="head">1:10; 2:23</td><td>로마서 9:25–26; 벧전 2:10</td><td>자녀 이름의 역전(로암미→암미, 로루하마→루하마)이 <strong>이방인의 교회 편입</strong> 예언이 됨 <span class="c d">D</span> <span class="c hb">Hb</span>. <span class="c m">M</span>: 호세아는 권리를 잃은 자의 회복, 바울은 애초에 권리 없던 자의 부르심 — 은혜와 수령자 사이 부합선을 긋기 거부(Barclay).</td></tr>
+    <tr><td class="head">13:14</td><td>고린도전서 15:55</td><td>"사망아 네 재앙이 어디 있느냐." <strong>MT는 위협(수사의문), LXX는 약속</strong>으로 옮겼고 바울은 LXX를 따라 이사야 25:8과 결합 <span class="c d">D</span>. <span class="c kd">KD</span>·<span class="c k">K</span>는 히브리어도 약속(부활)으로 읽음. 마가복음 10:45("대속")로 펼쳐짐 <span class="c k">K</span>. (Ⅱ부 13장 정밀 참조.)</td></tr>
+    <tr><td class="head">10:8</td><td>누가복음 23:30; 계 6:16</td><td>"산들에게 우리를 덮으라"—심판 앞 도피의 종말론적 외침 <span class="c hb">Hb</span>.</td></tr>
+    <tr><td class="head">10:12</td><td>고린도후서 9:10</td><td>"의의 열매"(파종의 잠언)의 반향 <span class="c hb">Hb</span> <span class="c k">K</span>.</td></tr>
+    <tr><td class="head">14:2</td><td>히브리서 13:15</td><td>"입술의 열매"(<span class="hw">פְּרִי שְׂפָתֵינוּ</span>, 헬라어·시리아어 역본 독법)를 그대로 인용 <span class="c k">K</span> <span class="c hb">Hb</span>.</td></tr>
+    <tr><td class="head">12:8</td><td>요한계시록 3:17</td><td>"내가 부요하여 재물을 얻었다"—라오디게아 교회의 자만 언어의 반향 <span class="c hb">Hb</span>.</td></tr>
+    <tr><td class="head">4:1, 6; 6:6</td><td>요한복음 17:3; 요일 2·3장</td><td>"하나님을 아는 지식"이 요한 문헌에서 <strong>제자도의 핵심</strong>(순종·충성·친밀)으로 계승 <span class="c hb">Hb</span> <span class="c k">K</span>.</td></tr>
+    <tr><td class="head">2:14–23; 1–3장</td><td>마 9:15; 엡 5:21–33; 계 19:7–9; 21:1–4</td><td>혼인 은유가 그리스도와 교회의 관계에 적용 — 복음의 기쁨·상호 헌신·영원한 연합 <span class="c hb">Hb</span>.</td></tr>
+  </table>
+
+  <div class="gold-box">
+    <div class="tt">유형론 — 제2의 출애굽과 부활</div>
+    <p><span class="c m">M</span>: 호세아 전편에 <strong>부활 주제</strong>가 흐른다 — 심판으로 쓰러진 바로 그자를 살리심(6:1–3; 13:14; 14장). 그리스도는 하나님께 버림받은 자로가 아니라 <strong>생명의 수여자에 의해 신원된 자</strong>로 오르셨다. 이는 이 책의 버림받음·심판을 무효화하지 않되, 하나님의 심판과 구속이 결합되는 "더 깊은 마법"(C. S. 루이스)을 상기시킨다. <span class="c d">D</span>: 바울이 로마서 9장과 고린도전서 15장에서 이사야·호세아를 결합한 방식은, 그의 자료(예언서 선집?)가 이미 핵심어(승리·사망)로 본문을 엮었을 가능성을 시사한다.</p>
+  </div>
+
+  <div class="back"><a href="#top">↑ 처음으로</a></div>
+</section>
+
+<hr class="furrow">
+
+<!-- ══════════════ Ⅵ부 · 복음적 해석 ══════════════ -->
+<section class="part" id="part5">
+  <div class="part-head">
+    <div class="heb">שׁוּבָה יִשְׂרָאֵל</div>
+    <div class="eyebrow">PART Ⅵ</div>
+    <h2>호세아서의 복음적 해석</h2>
+    <div class="gloss">슈바 이스라엘, "이스라엘아 돌아오라" (호 14:1) — 주석들이 여는 신약으로의 통로</div>
+  </div>
+
+  <div class="caveat">
+    <div class="tt">방법의 전제</div>
+    <p>주석들은 호세아를 그리스도의 알레고리로 환원하지 않는다. 아래 항목은 주석들이 실제로 열어 둔 통로, 곧 <strong>본문의 어휘·구조·신학이 신약과 만나는 지점</strong>을 정리한 것이다. <span class="c m">M</span>: 이것은 "대체 신학"(교회가 이스라엘을 대신함)도, 제롬식으로 이스라엘의 "지상적" 약속을 교회의 "영적" 재화로 바꾸는 것도 아니다 — 오히려 심판을 부른 "옛" 현실에 맞선 "새" 현실, <strong>언제나 마땅히 그러했어야 할 것</strong>의 초상이다.</p>
+  </div>
+
+  <h3>1. 값비싼 은혜 — 잃은 자를 사서 되찾으시는 하나님</h3>
+  <p><span class="c k">K</span>의 서론이 이 책의 복음을 압축한다. 하나님은 우리 어린 시절의 <strong>먼 마술사</strong>가 아니라, 결혼·가정·백성·사람을 만들거나 깨뜨릴 바로 그 한계와 자유 안에서 일하시는 분이다. 그는 사랑스럽지 않은 자를 사랑하시고 무가치한 자를 값있게 여기시되—<strong>그 몸값이 자신에게 모든 것을 치르게 할 만큼</strong>이다. 3장에서 호세아가 아내를 되찾기 위해 값을 치러야 했듯. <span class="c m">M</span>은 이를 본회퍼로 정리한다.</p>
+  <div class="gold-box">
+    <div class="tt">싸구려 은혜와 값비싼 은혜 (Bonhoeffer, Moon 인용)</div>
+    <p>"값비싼 은혜는 … 죄를 정죄하기에 값비싸고, 죄인을 의롭다 하기에 은혜다. 무엇보다 은혜가 값비싼 것은 <strong>하나님께 값비쌌기 때문이며, 하나님 아들의 생명을 치르게 했기 때문이다</strong>." <span class="c m">M</span>: 복음서·서신이 그리스도의 십자가 수치를 강조하는 것은 하나님 성품의 새로 계시된 국면이 아니라, <strong>호세아에서 배운 것의 최고 구현</strong>이다 — 우리 하나님은 수치당한 자기 백성을 찾아 그 수치를 자기에게 지시고 자기 영예에 참여시키신다.</p>
+  </div>
+
+  <h3>2. 하나님의 영예와 수치를 지심 — 그리스도의 십자가</h3>
+  <p><span class="c m">M</span>: 1장에서 하나님의 <strong>영예(honour)</strong>가 걸려 있다 — 자기 백성에게 자신을 묶으심에서. 바울이 같은 관심을 잇는다: "율법을 자랑하는 네가 율법을 범함으로 하나님을 욕되게 하느냐"(롬 2:23). 마땅한 대응은 백성을 버리는 것이었으나, 하나님은 그 <strong>수치를 친히 지신다</strong> — 이것이 호세아가 그리는 하나님이고, 십자가에서 최고로 구현된다 <span class="c m">M</span>. <span class="c hb">Hb</span>: 예수가 예루살렘을 보며 우시고 배신을 견디시고 아버지의 물러나심에 항변하시기까지, 우리는 호세아의 <strong>상처 입은 위엄</strong>의 더 선명한 그림을 보지 못한다.</p>
+
+  <h3>3. "인애를 원하고 제사를 원치 아니하노라" — 예수의 인용</h3>
+  <p>6:6은 복음적 독법에서 가장 직접적인 통로다. <span class="c hb">Hb</span>: 칠십인역에서 축자로 마태복음(9:13; 12:7)에 옮겨져 <strong>바리새인의 율법주의에 대한 예수의 고발</strong>이 된다 — 세리와 함께 잡수시고(9장), 안식일 논쟁에서(12장). 호세아의 제사장이 맡았던 역할을 바리새인이 맡은 셈이며, <strong>관계와 긍휼이 의식(儀式)을 앞선다</strong>는 원리가 여기서 복음의 핵심이 된다 <span class="c hb">Hb</span>.</p>
+
+  <h3>4. 이스라엘은 하나님의 아들 — 그리스도에게로</h3>
+  <p><span class="c k">K</span>: 마태복음 2:15의 11:1 인용은 유형론의 정도(正道)다 — 이스라엘(하나님의 장자)의 애굽 피신·위협·구출·귀환 패턴이, <strong>이스라엘이 부름받은 모든 것을 자기 안에 요약한 그리스도</strong>에게서 본질에서 재연된다. <span class="c m">M</span>은 이 아들 됨의 신학을 이스라엘의 <strong>선재적(proleptic) 소명</strong>으로 읽는다 — 이스라엘은 이미 그 나름의 방식으로 새 창조를 미리 구현하도록 부름받았고, 그 실패가 예언자적 비판의 기본 주제다. 그리스도의 부활이 그 새 창조의 세상 돌입이다 <span class="c m">M</span>.</p>
+
+  <h3>5. 부활의 주제 — 심판과 구속의 결합</h3>
+  <p>호세아 전편에 <strong>부활 모티프</strong>가 흐른다: "이틀 후에 살리시며 셋째 날에 일으키시리니"(6:2), "스올의 권세에서 속량하며"(13:14), 마른 것을 다시 푸르게(14장). <span class="c k">K</span>: 6:2의 "셋째 날"을 바울이 "성경대로"(고전 15:4)라 할 때 요나의 표적과 함께 이 본문이 염두에 있었을 (그 이상은 아니되) 가능성이 있다. <span class="c kd">KD</span>: 13:14는 부활의 약속이며 바울이 이사야 25:8과 결합해 고전 15:55에 인용했다. <span class="c m">M</span>: 예수는 하나님께 버림받은 자로가 아니라 <strong>생명의 수여자에 의해 신원된 자</strong>로 오르셨다 — 심판과 구속이 결합되는 "더 깊은 마법"(C. S. 루이스).</p>
+
+  <h3>6. 그리스도와 혼인 은유 — 교회</h3>
+  <p><span class="c hb">Hb</span>: 혼인 은유가 그리스도와 교회에 적용되어 ①복음이 가져오는 기쁨과 새로움(마 9:15), ②그리스도인 결혼의 상호 복종을 위한 사랑·희생의 문맥(엡 5:21–33), ③교회의 승리하는 영원한 연합의 광휘(계 19:7–9; 21:1–4)를 포착한다. <span class="c d">D</span>: "내 남편이지 내 바알이 아니라"(2:16)의 상호성 회복이 이 궤적의 구약 쪽 출발점이다.</p>
+
+  <h3>7. 돌아옴(<span class="hw">שׁוב</span>)과 회개의 복음</h3>
+  <p><span class="c k">K</span>: "돌아오라"(<span class="hw">שׁוב</span> 슈브)가 책의 중심 동사다 — 기본 뜻이 "돌이키다"이므로, 등을 돌리는 배신이자 그것을 철회하는 <strong>회개·회심·화해</strong>다. 14장이 이 부름을 소망으로 채운다. G. A. 스미스: "아모스는 '돌이키라, 앞에 멸망이 있으니', 호세아는 '돌이키라, <strong>뒤에 하나님이 계시니</strong>.'" <span class="c m">M</span>: 요구되는 한 가지는 백성이 "돌아와"(14:1) 야훼께 <strong>충성(allegiance)</strong>을 보이는 것이다 — 생명의 규례를 구속의 규례로 사랑하는 것(Schultz).</p>
+
+  <h3>8. 미완의 소망 — 우리 자신의 정황</h3>
+  <p><span class="c m">M</span>: 이 회복은 유배로부터의 귀환에 국한되지 않는다 — 예레미야의 "새 언약", 이사야의 "새 하늘과 땅"과 같은 세계다. 그리스도 안에서 새 창조의 <strong>첫 열매</strong>를 보았으나 그 충만은 아직 기다린다(롬 8장). "우리는 우리 자신과 공동체와 세상에서 만물의 회복을 얼마간 본다 — 그리고 그 회복의 충만을 함께 소망한다." <span class="c k">K</span>: 14:9의 "누구든지(<span class="hw">מִי</span>)"가 독자 자신을 같은 만남 앞에 세운다 — 하나님의 말씀은 결코 과거로 안전히 물러나지 않는다.</p>
+
+  <div class="note">
+    <div class="tt">설교 시리즈 골격 제안</div>
+    <p>① 1장 — 불길한 이름들과 그 역전(심판을 앞지르는 은혜) ② 2:14–23 — 광야의 구애와 약혼(공의·정의·인애·긍휼·진실로) ③ 3장 — 사서 되찾으시는 사랑(값비싼 은혜) ④ 4:6 — 지식 없이 망하는 백성(말씀과 교사의 사명) ⑤ 6:6 — 인애를 원하고 제사를 원치 아니하노라(관계가 의식을 앞선다) ⑥ 11:1–9 — 어찌 너를 놓겠느냐(상처 입은 위엄, "나는 하나님이요 사람이 아니라") ⑦ 13:14 — 사망아 네 재앙이 어디 있느냐(부활의 약속) ⑧ 14장 — 이스라엘아 돌아오라(입술의 열매와 이슬 같은 사랑).</p>
+  </div>
+
+  <div class="back"><a href="#top">↑ 처음으로</a></div>
+</section>
+
+<hr class="furrow">
+
+<!-- ══════════════ Ⅶ부 · 쟁점 대조표 ══════════════ -->
+<section class="part" id="part6">
+  <div class="part-head">
+    <div class="eyebrow">PART Ⅶ</div>
+    <h2>쟁점 대조표</h2>
+    <div class="gloss">일곱 주석이 갈리는 지점 — 인용 시 양쪽을 병기해야 하는 항목들</div>
+  </div>
+
+  <table>
+    <tr><th style="width:15%">쟁점</th><th style="width:9%">본문</th><th>주석별 입장</th></tr>
+    <tr>
+      <td class="head">결혼의 실재성</td><td>1:2; 3:1</td>
+      <td><strong>실재 결혼</strong> <span class="c k">K</span> <span class="c hb">Hb</span> <span class="c d">D</span> <span class="c s">S</span> <span class="c g">G</span> <span class="c m">M</span> (예언자 상징 행위) · <strong>내적 환상</strong> <span class="c kd">KD</span> (외적 결혼은 하나님의 거룩과 충돌, 특히 둘째 명령; 단 비유·허구도 아님)</td>
+    </tr>
+    <tr>
+      <td class="head">1장·3장 동일인</td><td>3:1–2</td>
+      <td><strong>동일인(고멜)</strong> <span class="c k">K</span> <span class="c hb">Hb</span> <span class="c d">D</span> <span class="c g">G</span> <span class="c m">M</span> (한 배우자가 이스라엘을 대표) · <strong>다른 여인</strong> <span class="c kd">KD</span> (부정관사 "한 여자", "샀다"는 미소유 전제) · <strong>미정</strong> <span class="c s">S</span> (증명 불가; 고멜은 이미 죽었을 수도)</td>
+    </tr>
+    <tr>
+      <td class="head">고멜의 신분</td><td>1:2–3</td>
+      <td><strong>이미 창기</strong> <span class="c k">K</span> (단 성전창기 아님, 4:14의 다른 단어) · <strong>본문이 말하지 않음</strong> <span class="c s">S</span> <span class="c m">M</span> ("음란"은 언약 파기의 표지이지 직업 진술 아님; 호세아 상대 음행의 근거 없음)</td>
+    </tr>
+    <tr>
+      <td class="head">결혼의 완성</td><td>3:3</td>
+      <td><strong>미완성(non-consummation)</strong> <span class="c s">S</span> (정절 요구 = 앗수르 유폐 예언; "창기와의 결혼" 관념이 무뎌짐) · 나머지는 본문에서 미완성을 도출하지 않음</td>
+    </tr>
+    <tr>
+      <td class="head">1:7 유다</td><td>1:7</td>
+      <td><strong>유다 편집설</strong> — 다수(Wellhausen 이래) · <strong>반박</strong> <span class="c m">M</span> (모든 역본이 담음; 이스라엘 심판의 일부 — 긍휼을 유다에게로 돌림; 오컴의 면도날) · <strong>절충</strong> <span class="c d">D</span> <span class="c hb">Hb</span> (호세아 자신은 유다 시야; 최종 형태는 유다 편집)</td>
+    </tr>
+    <tr>
+      <td class="head">유다 편집 일반</td><td>5:5; 6:11; 8:14 등</td>
+      <td><strong>편집설 기각</strong> <span class="c m">M</span> (국경 유동·정치적 얽힘; 후대 저자가 북의 운명을 자연스레 남에 적용) · <strong>부분 인정</strong> <span class="c d">D</span> <span class="c hb">Hb</span> (히스기야기 유다 편집·갱신, 표제가 명백한 예)</td>
+    </tr>
+    <tr>
+      <td class="head">6:1–3의 성격</td><td>6:1–3</td>
+      <td><strong>참 회개(하나님이 이끌 회심)</strong> <span class="c k">K</span> (선호; 6:6이 6:1–3과 충돌 않음) · <strong>안이·뻔뻔한 추정</strong> — 흔한 다수설 (예카테리나 2세류; 5:15의 "간절히 구함"에도 얕음)</td>
+    </tr>
+    <tr>
+      <td class="head">6:2 "셋째 날"</td><td>6:2</td>
+      <td><strong>부활 예기 가능</strong> <span class="c k">K</span> (청중에겐 "곧"의 뜻이나 예언자가 아는 것보다 깊이 말함; 고전 15:4 "성경대로"에 이 본문 가능성) · 대다수는 문자적 "곧/회복"으로 봄</td>
+    </tr>
+    <tr>
+      <td class="head">13:14의 성격</td><td>13:14</td>
+      <td><strong>약속(부활)</strong> <span class="c kd">KD</span> (히브리어 의문접두사 없음; 사망 정복 확언; 고전 15:55) <span class="c k">K</span> (평서문; 마 10:45; 계 20:14; 급전의 예) · <strong>위협(수사의문)</strong> <span class="c s">S</span> (사망을 향한 소환; 저주 유형 24) <span class="c d">D</span> (MT는 위협, LXX·바울이 약속으로 재해석) · 대다수 현대 학자 후자</td>
+    </tr>
+    <tr>
+      <td class="head">11:1의 마 2:15 용법</td><td>11:1</td>
+      <td><strong>유형론적 정당</strong> <span class="c k">K</span> (이스라엘=하나님의 장자 패턴의 그리스도 안 재연) · <span class="c d">D</span> (신 32장과 공유한 "하나님의 자녀" 근원 은유)</td>
+    </tr>
+    <tr>
+      <td class="head">사역 기간</td><td>1:1</td>
+      <td><strong>약 60–65년</strong> <span class="c kd">KD</span> (왕 명단 문자대로; 엘리사 50년 병례) · <strong>약 40년</strong> <span class="c hb">Hb</span> (752경–725경, 유다에서 종결) · <strong>약 30년</strong> <span class="c m">M</span> (750경–720경, 흔들리게) · <strong>열린 폭</strong> <span class="c s">S</span></td>
+    </tr>
+    <tr>
+      <td class="head">본문(MT)의 신뢰도</td><td>전편</td>
+      <td><strong>MT 준수·수정 최소화</strong> <span class="c m">M</span> (Gelston·Barthélemy 이후) <span class="c hb">Hb</span> (자음 본문 최대 존중; 난제는 지식의 한계) · <strong>수정 다수</strong> — 구세대(Harper 등) · <strong>절충</strong> <span class="c s">S</span> <span class="c d">D</span></td>
+    </tr>
+    <tr>
+      <td class="head">바알 언급의 지시</td><td>2:8, 16; 13:1 등</td>
+      <td><strong>야훼 외 신들</strong> <span class="c d">D</span> (2:16이 혼합주의 함의; 8세기 히브리어에 인간 지도자 용법 근거 약함) · <strong>정치동맹(부분)</strong> Kelle(<span class="c d">D</span>가 소개, 부분 수용) · <strong>혼합주의</strong> <span class="c m">M</span> (야훼를 바알로; 2:16이 유일한 명시적 바알 예배 언급)</td>
+    </tr>
+    <tr>
+      <td class="head">구조의 비중</td><td>전편</td>
+      <td><strong>삼중 구조(고발→소망)</strong> <span class="c hb">Hb</span> · <strong>세 회복 약속으로 삼단</strong> <span class="c kd">KD</span> · <strong>단일 리듬(파기→저주→축복)</strong> <span class="c s">S</span> · <strong>구조 비중 축소</strong> <span class="c m">M</span> ("경계가 흐릿함")</td>
+    </tr>
+  </table>
+
+  <div class="back"><a href="#top">↑ 처음으로</a></div>
+</section>
+
+<hr class="furrow">
+
+<!-- ══════════════ Ⅷ부 · 연구 서지 ══════════════ -->
+<section class="part" id="part7">
+  <div class="part-head">
+    <div class="eyebrow">PART Ⅷ</div>
+    <h2>연구 서지</h2>
+    <div class="gloss">이 노트의 자료 일곱 종 + 확장 연구용 문헌</div>
+  </div>
+
+  <h3>이 노트의 자료</h3>
+  <ol>
+    <li>Derek Kidner, <em>The Message of Hosea: Love to the Loveless</em>, The Bible Speaks Today (Leicester / Downers Grove, IL: Inter-Varsity Press, 1981). <span class="c k">K</span></li>
+    <li>John Goldingay, <em>Hosea–Micah</em>, Baker Commentary on the Old Testament Prophetic Books (Grand Rapids, MI: Baker Academic, 2021). <span class="c g">G</span></li>
+    <li>David Allan Hubbard, <em>Hosea</em>, Tyndale Old Testament Commentaries (Leicester / Downers Grove, IL: Inter-Varsity Press, 1989). <span class="c hb">Hb</span></li>
+    <li>J. Andrew Dearman, <em>The Book of Hosea</em>, New International Commentary on the Old Testament (Grand Rapids, MI: William B. Eerdmans, 2010). <span class="c d">D</span></li>
+    <li>C. F. Keil and Franz Delitzsch, <em>Commentary on the Old Testament, Vol. 10: Minor Prophets</em> (원저 19세기; Grand Rapids, MI: Eerdmans, 재쇄). <span class="c kd">KD</span></li>
+    <li>Douglas Stuart, <em>Hosea–Jonah</em>, Word Biblical Commentary 31 (Waco, TX: Word Books, 1987; © Thomas Nelson, 1988). <span class="c s">S</span></li>
+    <li>Joshua N. Moon, <em>Hosea</em>, Apollos Old Testament Commentary 21 (London / Downers Grove, IL: Apollos / InterVarsity Press, 2018). <span class="c m">M</span></li>
+  </ol>
+
+  <h3>확장 연구용</h3>
+  <table>
+    <tr><th style="width:26%">분류</th><th>문헌</th></tr>
+    <tr><td class="head">표준 비평 주석</td><td>Francis I. Andersen and David Noel Freedman, <em>Hosea</em>, AB 24 (Garden City, NY: Doubleday, 1980) — 언어·본문의 기준점 · A. A. Macintosh, <em>A Critical and Exegetical Commentary on Hosea</em>, ICC (Edinburgh: T&amp;T Clark, 1997) · Hans Walter Wolff, <em>Hosea</em>, Hermeneia (Philadelphia: Fortress, 1974) · James L. Mays, <em>Hosea</em>, OTL (Philadelphia: Westminster, 1969)</td></tr>
+    <tr><td class="head">복음적·강해 주석</td><td>Thomas Edward McComiskey, "Hosea," in <em>The Minor Prophets</em>, vol. 1 (Grand Rapids: Baker, 1992) · Duane A. Garrett, <em>Hosea, Joel</em>, NAC 19A (Nashville: Broadman &amp; Holman, 1997) · J. Andrew Dearman와 병행해 볼 것</td></tr>
+    <tr><td class="head">혼인 은유·2장</td><td>Brad E. Kelle, <em>Hosea 2: Metaphor and Rhetoric in Historical Perspective</em>, SBLAcBib 20 (Atlanta: SBL, 2005) · Gerlinde Baumann, <em>Love and Violence: Marriage as Metaphor for the Relationship between YHWH and Israel in the Prophetic Books</em> (Collegeville: Liturgical Press, 2003) · Richtsje Abma, <em>Bonds of Love</em> (Assen: Van Gorcum, 1999)</td></tr>
+    <tr><td class="head">역사·배경</td><td>K. Lawson Younger Jr., <em>A Political History of the Arameans</em> (Atlanta: SBL, 2016) · Bob Becking, <em>The Fall of Samaria: An Historical and Archaeological Study</em> (Leiden: Brill, 1992) · J. Maxwell Miller and John H. Hayes, <em>A History of Ancient Israel and Judah</em>, 2nd ed. (Louisville: WJK, 2006)</td></tr>
+    <tr><td class="head">수용사·신학</td><td>Martti Nissinen, <em>Prophets and Prophecy in the Ancient Near East</em>, WAW 12 (Atlanta: SBL, 2003) — Mari·니느웨 병행 · Ehud Ben Zvi, <em>Hosea</em>, FOTL 21A/1 (Grand Rapids: Eerdmans, 2005) · Brevard S. Childs, <em>Biblical Theology of the Old and New Testaments</em> (Minneapolis: Fortress, 1992)</td></tr>
+  </table>
+
+  <div class="caveat">
+    <div class="tt">서지 정보 주의</div>
+    <p>출판지·출판사·연도는 초판 또는 대표판 기준이며, 재쇄본 표지가 다를 수 있다(예: WBC는 Word Books → Zondervan으로 판권 이동; Kidner의 BST Hosea는 초판 표제가 <em>Love to the Loveless</em>). 총서 번호·부제에 오차 가능성이 있으니, 논문 각주 수준의 엄밀성이 필요한 항목은 WorldCat이나 출판사 페이지 대조를 권한다. 이 노트의 모든 해석 진술은 각 주석의 논지를 요약·재구성한 것이므로, 인용·출판 시에는 해당 면수를 직접 확인해 출처를 명기할 것.</p>
+  </div>
+
+  <div class="back"><a href="#top">↑ 처음으로</a></div>
+</section>
+
+<footer>
+  <p><strong>호세아서 연구 노트</strong> — 개인 연구 목적의 종합 자료. 일곱 주석의 논지를 요약·재구성한 것이며, 히브리어 표기는 (발음, 의미) 병기 원칙을 따랐다. 절 번호는 개역개정 기준이며, 필요한 곳에서 마소라 본문(MT) 절 번호를 병기했다.</p>
+  <p style="margin-top:.5rem">주석가 칩: <span class="c k">K</span> Kidner · <span class="c g">G</span> Goldingay · <span class="c hb">Hb</span> Hubbard · <span class="c d">D</span> Dearman · <span class="c kd">KD</span> Keil-Delitzsch · <span class="c s">S</span> Stuart · <span class="c m">M</span> Moon</p>
+</footer>
+
+</main>
+</div>
+</body>
+</html>

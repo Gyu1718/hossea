@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>호세아서 연구 노트 — 일곱 주석 종합</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Serif+Hebrew:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2a211c;          /* 밭흙 잉크 */
+  --ink-soft:#5b4f45;
+  --paper:#f4efe3;        /* 귀리 양피지 */
+  --panel:#fdfbf6;
+  --wine:#7b3040;         /* 석류주 — 언약·혼인의 축 */
+  --wine-deep:#57212e;
+  --gold:#9c7c3c;         /* 곡식·기름의 청동금 — 히브리어 표제 전용 */
+  --vine:#4d6b46;         /* 포도넝쿨 녹색 — 소망·소생 */
+  --line:#ddd5c3;
+  --k:#8a5a2b; --g:#2f6b5e; --hb:#a34a5c; --d:#2f5688; --kd:#5c5750; --s:#b06a1e; --m:#6a4c86;
+  --serif:"Noto Serif KR","Apple SD Gothic Neo",serif;
+  --sans:"Noto Sans KR","Apple SD Gothic Neo",sans-serif;
+  --heb:"Noto Serif Hebrew","SBL Hebrew",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--serif);color:var(--ink);background:var(--paper);line-height:1.85;font-size:16.5px;word-break:keep-all}
+
+/* ── 레이아웃: 좌측 목차 + 본문 ── */
+.frame{display:grid;grid-template-columns:274px 1fr;min-height:100vh}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--wine-deep);color:#f0e5df;padding:2.2rem 1.4rem 3rem;font-family:var(--sans);font-size:.82rem}
+nav.toc .brand{font-family:var(--serif);font-weight:900;font-size:1.05rem;line-height:1.45;color:#fff;margin-bottom:.3rem}
+nav.toc .brand-heb{font-family:var(--heb);font-size:1.5rem;color:var(--gold);direction:rtl;margin-bottom:.2rem}
+nav.toc .brand-sub{color:#c9a9a3;font-size:.72rem;letter-spacing:.13em;margin-bottom:1.5rem}
+nav.toc a{display:block;color:#ddc7c0;text-decoration:none;padding:.26rem .5rem;border-left:2px solid transparent;line-height:1.5}
+nav.toc a:hover,nav.toc a:focus-visible{color:#fff;border-left-color:var(--gold);background:rgba(255,255,255,.05);outline:none}
+nav.toc .lv1{font-weight:700;color:#f0e5df;margin-top:.85rem}
+nav.toc .lv2{padding-left:1.05rem;font-size:.78rem}
+main{max-width:47.5rem;padding:3.2rem 3rem 6rem;margin:0 auto;width:100%}
+@media(max-width:960px){
+  .frame{display:block}
+  nav.toc{position:static;height:auto;padding:1.4rem 1.2rem}
+  nav.toc .cols{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+  main{padding:2rem 1.15rem 4rem}
+}
+
+/* ── 표제부 ── */
+header.hero{border-bottom:3px double var(--line);padding-bottom:2.2rem;margin-bottom:2.6rem}
+.hero .heb-title{font-family:var(--heb);font-size:3.5rem;color:var(--gold);line-height:1.1;direction:rtl}
+.hero h1{font-size:2.05rem;font-weight:900;line-height:1.35;margin:.4rem 0 .6rem}
+.hero .sub{color:var(--ink-soft);font-size:.95rem}
+.hero .meta{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft);margin-top:1.1rem;letter-spacing:.02em}
+
+/* ── 섹션 공통 ── */
+section.part{margin-top:4.2rem}
+.part-head{border-top:3px solid var(--wine);padding-top:1.3rem;margin-bottom:1.7rem}
+.part-head .heb{font-family:var(--heb);font-size:2.4rem;color:var(--gold);line-height:1;direction:rtl;float:right;margin-left:1rem}
+.part-head .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;color:var(--wine);font-weight:700}
+.part-head h2{font-size:1.55rem;font-weight:900;line-height:1.4;margin:.25rem 0 .2rem}
+.part-head .gloss{font-size:.85rem;color:var(--ink-soft)}
+h3{font-size:1.14rem;font-weight:700;margin:2.1rem 0 .8rem;color:var(--wine-deep)}
+h4{font-size:.98rem;font-weight:700;margin:1.5rem 0 .5rem}
+p{margin:.85rem 0}
+strong{font-weight:700}
+em{font-style:normal;font-weight:500;color:var(--wine-deep)}
+
+/* 파종 고랑 구분선 — 이스르엘(하나님이 씨 뿌리신다) 모티프 */
+hr.furrow{border:0;height:10px;margin:2.6rem 0;background:
+ repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 22px) 0 4px/100% 2px no-repeat;
+ position:relative}
+hr.furrow::after{content:"";position:absolute;left:0;right:0;top:1px;height:2px;
+ background:repeating-linear-gradient(90deg,transparent 0 15px,var(--gold) 15px 17px,transparent 17px 30px)}
+
+/* 히브리어 인라인 */
+.hw{font-family:var(--heb);font-size:1.06em;direction:rtl;unicode-bidi:isolate}
+
+/* 주석가 칩 */
+.c{display:inline-block;font-family:var(--sans);font-weight:700;font-size:.6rem;line-height:1;padding:.24em .42em;border-radius:3px;color:#fff;vertical-align:.16em;letter-spacing:.02em}
+.c.k{background:var(--k)}.c.g{background:var(--g)}.c.hb{background:var(--hb)}.c.d{background:var(--d)}.c.kd{background:var(--kd)}.c.s{background:var(--s)}.c.m{background:var(--m)}
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1rem;font-family:var(--sans);font-size:.78rem;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:.9rem 1.1rem;margin:1.2rem 0}
+.legend span.name{color:var(--ink-soft)}
+.legend>div{flex:1 1 44%;min-width:15rem}
+
+/* 카드·박스 */
+.note{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--vine);border-radius:6px;padding:1rem 1.2rem;margin:1.2rem 0;font-size:.95rem}
+.note .tt{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.14em;color:var(--vine);margin-bottom:.3rem}
+.caveat{background:#f7ecee;border:1px solid #e2c3c9;border-left:4px solid var(--wine);border-radius:6px;padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.92rem}
+.caveat .tt{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.14em;color:var(--wine);margin-bottom:.25rem}
+.gold-box{background:#faf4e6;border:1px solid #e6d5ac;border-left:4px solid var(--gold);border-radius:6px;padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.93rem}
+.gold-box .tt{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.14em;color:#8a6a2c;margin-bottom:.25rem}
+
+/* 절 단위 주해 */
+.vs{margin:1.35rem 0;padding-left:1.1rem;border-left:3px solid var(--line)}
+.vs .ref{font-family:var(--sans);font-weight:700;font-size:.86rem;color:var(--wine);display:block;margin-bottom:.25rem}
+.vs p{margin:.5rem 0;font-size:.97rem}
+
+/* 표 */
+table{width:100%;border-collapse:collapse;font-size:.88rem;margin:1.3rem 0;background:var(--panel)}
+th{font-family:var(--sans);font-size:.74rem;letter-spacing:.05em;text-align:left;background:var(--wine-deep);color:#f0e5df;padding:.55rem .7rem;font-weight:700}
+td{border:1px solid var(--line);padding:.55rem .7rem;vertical-align:top;line-height:1.65}
+tr:nth-child(even) td{background:#faf6ee}
+td.head{font-weight:700;white-space:nowrap;background:#f0ece1!important}
+
+/* 장 블록 */
+.chap{margin:2.6rem 0;padding:1.5rem 1.6rem;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.chap>h3{margin-top:0;display:flex;align-items:baseline;gap:.6rem}
+.chap .chip-num{font-family:var(--sans);font-weight:700;font-size:.7rem;background:var(--wine);color:#fff;border-radius:4px;padding:.25em .55em;letter-spacing:.06em}
+.chap .lead{font-size:.93rem;color:var(--ink-soft);margin-top:-.2rem}
+
+ul,ol{padding-left:1.4rem;margin:.7rem 0}
+li{margin:.4rem 0}
+.back{font-family:var(--sans);font-size:.72rem;margin-top:1.6rem}
+.back a{color:var(--wine);text-decoration:none}
+footer{margin-top:5rem;border-top:3px double var(--line);padding-top:1.4rem;font-family:var(--sans);font-size:.75rem;color:var(--ink-soft)}
+
+@media print{
+  nav.toc{display:none}
+  .frame{display:block}
+  body{background:#fff;font-size:11pt}
+  main{max-width:100%;padding:0}
+  .chap,.note,.caveat,.gold-box{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="frame">
+
+<nav class="toc" aria-label="목차">
+  <div class="brand-heb">הוֹשֵׁעַ</div>
+  <div class="brand">호세아서 연구 노트</div>
+  <div class="brand-sub">SEVEN-COMMENTARY SYNTHESIS</div>
+  <div class="cols">
+    <a class="lv1" href="#overview">개요·주석 프로필</a>
+    <a class="lv1" href="#part1">Ⅰ. 배경 연구</a>
+    <a class="lv2" href="#p1-person">인물·출신</a>
+    <a class="lv2" href="#p1-history">역사 배경·사료</a>
+    <a class="lv2" href="#p1-marriage">호세아의 결혼(핵심 쟁점)</a>
+    <a class="lv2" href="#p1-cult">제의·바알·지식</a>
+    <a class="lv1" href="#part2">Ⅱ. 각 장 주해</a>
+    <a class="lv2" href="#ch1">1–3장 · 결혼 서사</a>
+    <a class="lv2" href="#ch4">4–7장 · 소송과 타락</a>
+    <a class="lv2" href="#ch8">8–10장 · 파종과 심판</a>
+    <a class="lv2" href="#ch11">11–14장 · 사랑·부활·귀향</a>
+    <a class="lv1" href="#part-preacher">Ⅲ. 설교자를 위한 메시지</a>
+    <a class="lv1" href="#part3">Ⅳ. 신학적 메시지</a>
+    <a class="lv1" href="#part4">Ⅴ. 상호 참조</a>
+    <a class="lv1" href="#part5">Ⅵ. 복음적 해석</a>
+    <a class="lv1" href="#part6">Ⅶ. 쟁점 대조표</a>
+    <a class="lv1" href="#part7">Ⅷ. 연구 서지</a>
+  </div>
+</nav>
+
+<main>
+
+<header class="hero" id="top">
+  <div class="heb-title">דְּבַר־יְהוָה אֶל־הוֹשֵׁעַ</div>
+  <h1>호세아서 연구 노트</h1>
+  <div class="sub">데바르-아도나이 엘-호셰아, "여호와의 말씀이 호세아에게 임하니라" (호 1:1) — 일곱 주석 종합: 주해 · 신학 · 상호 참조 · 복음적 해석</div>
+  <div class="meta">개인 연구용 종합 노트 · 히브리어는 (발음, 의미) 병기 · 문장 단위 출처는 주석가 칩으로 표시 · 성경 인용은 개역개정 대조 확인 전제</div>
+</header>
